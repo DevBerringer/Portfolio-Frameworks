@@ -1,7 +1,7 @@
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
 import { socialLinks } from '../../data/portfolio';
 
-const iconMap: { [key: string]: JSX.Element } = {
+const iconMap: Record<string, React.ReactElement> = {
   github: <FiGithub size={20} />,
   linkedin: <FiLinkedin size={20} />,
   twitter: <FiTwitter size={20} />,
