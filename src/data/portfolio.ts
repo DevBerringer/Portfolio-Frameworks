@@ -61,6 +61,7 @@ export const skills: Skill[] = [
   { name: 'Cursor', category: 'AI' },
   { name: 'LangChain', category: 'AI' },
   { name: 'OpenAI API', category: 'AI' },
+  { name: 'NLP', category: 'AI' },
   { name: 'Figma', category: 'design' },
   { name: 'Lucidchart', category: 'design' },
   { name: 'Microsoft Visio', category: 'design' },
@@ -79,7 +80,7 @@ export const personalInfo = {
   about: `I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I transform ideas into elegant, scalable solutions.
 
 When I'm not coding, you'll find me exploring new technologies, contributing to open source, or sharing knowledge with the developer community.`,
-  email: 'your.email@example.com',
+  email: 'Blake.Berringer.Work@gmail.com',
   location: 'Austin, TX',
   availability: 'Available for freelance projects',
 };

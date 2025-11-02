@@ -9,11 +9,24 @@
     @apply bg-white text-gray-900 antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+  }
+
+  /* Performance optimizations for mobile */
+  @media (max-width: 768px) {
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    section {
+      will-change: contents;
+    }
   }
 }
 

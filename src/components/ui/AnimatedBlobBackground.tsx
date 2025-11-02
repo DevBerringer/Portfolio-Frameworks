@@ -114,12 +114,20 @@ export default function AnimatedBlobBackground({
   blobCount,
   intensity = 'high' 
 }: AnimatedBlobBackgroundProps) {
+  // Detect if mobile device for performance optimization
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
+  
   // Get blobs to render based on count or intensity
+  // Reduce blobs on mobile for better performance
+  const effectiveIntensity = isMobile && !blobCount 
+    ? (intensity === 'high' ? 'medium' : intensity === 'medium' ? 'low' : intensity)
+    : intensity;
+    
   const blobsToRender = blobCount 
     ? defaultBlobs.slice(0, blobCount)
-    : intensity === 'low' 
+    : effectiveIntensity === 'low' 
       ? defaultBlobs.slice(0, 3)
-      : intensity === 'medium'
+      : effectiveIntensity === 'medium'
         ? defaultBlobs.slice(0, 5)
         : defaultBlobs;
 
@@ -140,17 +148,20 @@ export default function AnimatedBlobBackground({
         return (
           <motion.div
             key={index}
-            className={adjustedClassName}
+            className={`${adjustedClassName} will-change-transform`}
             animate={{
               x: blob.animation.x,
               y: blob.animation.y,
               scale: blob.animation.scale,
             }}
             transition={{
-              duration: blob.duration,
+              duration: isMobile ? blob.duration * 1.5 : blob.duration, // Slower on mobile for smoother performance
               repeat: Infinity,
               ease: "easeInOut",
               delay: blob.delay || 0,
+            }}
+            style={{
+              transform: 'translateZ(0)', // Force GPU acceleration
             }}
           />
         );

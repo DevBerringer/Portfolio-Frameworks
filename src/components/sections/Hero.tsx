@@ -15,6 +15,11 @@ export default function Hero() {
     document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Detect mobile for faster animations
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
+  const animationDelay = isMobile ? 0.05 : 0.1;
+  const animationDuration = isMobile ? 0.3 : 0.5;
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50">
       {/* Animated Background Elements */}
@@ -29,7 +34,7 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: animationDuration, delay: animationDelay }}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
             Hi, I'm{' '}
@@ -38,7 +43,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: animationDuration }}
             className="mb-6"
           >
             <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
@@ -50,7 +55,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: animationDuration, delay: animationDelay * 2 }}
             className="text-xl md:text-2xl text-gray-600 mb-4"
           >
             {personalInfo.title}
@@ -59,7 +64,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: animationDuration, delay: animationDelay * 3 }}
             className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto"
           >
             {personalInfo.tagline}
@@ -69,7 +74,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: animationDuration, delay: animationDelay * 4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
             <motion.button
@@ -94,7 +99,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: animationDuration, delay: animationDelay * 5 }}
             className="flex justify-center space-x-6"
           >
             {socialLinks.map((link) => (
