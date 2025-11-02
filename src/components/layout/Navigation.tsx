@@ -34,9 +34,15 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass shadow-lg py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 w-full z-50 transition-all duration-300 py-4 md:py-6 ${
+        isOpen
+          ? 'bg-white/60 backdrop-blur-sm shadow-lg'
+          : scrolled
+          ? 'bg-white/40 backdrop-blur-sm shadow-lg'
+          : 'bg-transparent'
       }`}
+            
+      style={(scrolled || isOpen) ? { backdropFilter: 'blur(10px)' } : {}}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">

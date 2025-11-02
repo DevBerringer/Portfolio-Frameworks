@@ -45,7 +45,7 @@ export default function Projects() {
   const getNextIndex = () => (currentIndex + 1) % projects.length;
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 overflow-hidden">
+    <section id="projects" className="py-10 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,9 +63,9 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Carousel Container */}
-        <div className="relative w-full mx-auto mb-12 overflow-hidden">
-          <div className="relative h-[500px] md:h-[600px] flex items-center justify-center overflow-visible md:overflow-hidden">
+        {/* Desktop Carousel - Hidden on mobile */}
+        <div className="hidden md:block relative w-full mx-auto mb-12 overflow-hidden">
+          <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
             {/* Previous Card (Left) */}
             <AnimatePresence initial={false}>
               <motion.div
@@ -137,7 +137,7 @@ export default function Projects() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Dots */}
+          {/* Navigation Dots - Desktop only */}
           <div className="flex justify-center space-x-3 mt-8">
             {projects.map((_, index) => (
               <button
@@ -150,6 +150,15 @@ export default function Projects() {
                 }`}
                 aria-label={`Go to project ${index + 1}`}
               />
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Unique Layout - Visible on mobile only */}
+        <div className="md:hidden mb-12">
+          <div className="space-y-0">
+            {projects.map((project, index) => (
+              <MobileProjectLayout key={project.id} project={project} index={index} total={projects.length} />
             ))}
           </div>
         </div>
@@ -259,5 +268,141 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
         </div>
       </div>
     </div>
+  );
+}
+
+// Unique Mobile Layout - No cards! Editorial storytelling format
+function MobileProjectLayout({ project, index, total }: { project: Project; index: number; total: number }) {
+  const isLast = index === total - 1;
+  
+  return (
+    <motion.article
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ 
+        duration: 0.7, 
+        delay: index * 0.12,
+        ease: [0.16, 1, 0.3, 1]
+      }}
+      className={`relative ${!isLast ? 'mb-10' : 'mb-12'}`}
+    >
+      {/* Visual timeline indicator - left side */}
+      <div className="absolute left-0 top-0 bottom-0 w-1 flex flex-col items-center">
+        {!isLast && (
+          <div className="w-1 flex-1 bg-gradient-to-b from-primary-500 via-primary-400/50 to-transparent opacity-20" />
+        )}
+        <div className="absolute top-0 w-6 h-6 bg-primary-600 rounded-full border-4 border-gray-50 shadow-lg z-10" />
+      </div>
+
+      {/* Content area - offset from timeline */}
+      <div className="ml-8">
+        {/* Large hero image - full bleed style */}
+        <motion.div 
+          className="relative w-full mb-6"
+          initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
+          whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
+        >
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <motion.img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              whileInView={{ scale: 1.1 }}
+              initial={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2 }}
+            />
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
+          </div>
+        </motion.div>
+
+        {/* Title - Large, editorial style */}
+        <motion.h2
+          initial={{ x: -20, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+          className="text-4xl font-black text-gray-900 mb-3 leading-tight tracking-tight"
+        >
+          {project.title}
+        </motion.h2>
+
+        {/* Tags - minimal, inline */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+          className="flex flex-wrap gap-2 mb-4"
+        >
+          {project.tags.map((tag, tagIndex) => (
+            <span 
+              key={tag}
+              className="text-xs font-semibold text-primary-600 uppercase tracking-wider"
+            >
+              {tag}{tagIndex < project.tags.length - 1 && ' • '}
+            </span>
+          ))}
+        </motion.div>
+
+        {/* Description - editorial paragraph style */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+          className="text-gray-700 mb-6 leading-relaxed text-[16px] max-w-none font-light"
+          style={{ lineHeight: '1.75' }}
+        >
+          {project.description}
+        </motion.p>
+
+        {/* Action buttons - minimal, text-focused with consistent spacing */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+          className="flex gap-4 pt-4 border-b mb-12 border-gray-200 min-h-[48px] items-center"
+        >
+          {project.demoUrl && (
+            <motion.a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+            >
+              <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+              <span>Live Demo</span>
+              <span className="text-gray-400">→</span>
+            </motion.a>
+          )}
+          {project.githubUrl && (
+            <motion.a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 text-gray-700 font-semibold hover:text-gray-900 transition-colors group"
+            >
+              <FiGithub size={18} className="group-hover:rotate-12 transition-transform" />
+              <span>Source Code</span>
+              <span className="text-gray-400">→</span>
+            </motion.a>
+          )}
+          {!project.demoUrl && !project.githubUrl && (
+            <span className="flex items-center gap-2 text-gray-400 font-medium">
+              <FiLock size={18} />
+              Private Repository
+            </span>
+          )}
+        </motion.div>
+      </div>
+    </motion.article>
   );
 }
