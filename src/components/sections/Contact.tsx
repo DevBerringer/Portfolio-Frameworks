@@ -13,20 +13,43 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      // Success
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
 
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
-    }, 1500);
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -196,6 +219,8 @@ export default function Contact() {
                     ? 'bg-gray-400 cursor-not-allowed'
                     : submitStatus === 'success'
                     ? 'bg-green-500 text-white'
+                    : submitStatus === 'error'
+                    ? 'bg-red-500 text-white'
                     : 'bg-primary-600 text-white hover:bg-primary-700'
                 }`}
               >
@@ -224,7 +249,14 @@ export default function Contact() {
                     Sending...
                   </>
                 ) : submitStatus === 'success' ? (
-                  '✓ Message Sent!'
+                  <>
+                    <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Message Sent!
+                  </>
+                ) : submitStatus === 'error' ? (
+                  '✗ Try Again'
                 ) : (
                   <>
                     <FiSend className="mr-2" />
@@ -237,9 +269,19 @@ export default function Contact() {
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-green-600 text-center text-sm"
+                  className="text-green-600 text-center text-sm font-medium"
                 >
                   Thank you! I'll get back to you soon.
+                </motion.p>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-600 text-center text-sm font-medium"
+                >
+                  {errorMessage || 'Something went wrong. Please try again.'}
                 </motion.p>
               )}
             </form>

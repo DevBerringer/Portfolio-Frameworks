@@ -10,7 +10,7 @@ A beautiful, responsive personal portfolio website built with React, TypeScript,
 - **Fast Performance**: Optimized build with Vite for lightning-fast development and production builds
 - **Easy Customization**: Modular component structure with centralized data configuration
 - **Smooth Navigation**: Animated scroll behavior and mobile-friendly navigation
-- **Contact Form**: Built-in contact form with validation (ready to connect to your backend)
+- **Contact Form**: Fully functional contact form with Resend API integration for sending emails
 
 ## 🚀 Getting Started
 
@@ -25,12 +25,44 @@ A beautiful, responsive personal portfolio website built with React, TypeScript,
 npm install
 ```
 
-2. Start the development server:
+2. Set up environment variables:
+   - Create a `.env` file in the root directory
+   - Add your Resend API key and receiver email:
+   ```env
+   RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+   CONTACT_RECEIVER_EMAIL=your-email@example.com
+   ```
+   - Get your Resend API key from [https://resend.com/api-keys](https://resend.com/api-keys)
+
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5173`
+
+### Contact Form Setup
+
+The contact form uses Resend API to send emails. To set it up:
+
+1. **Get a Resend API Key**:
+   - Sign up at [Resend.com](https://resend.com)
+   - Navigate to API Keys section
+   - Create a new API key
+
+2. **Configure Environment Variables**:
+   - Create a `.env` file in the project root
+   - Add: `RESEND_API_KEY=your_api_key_here`
+   - Add: `CONTACT_RECEIVER_EMAIL=your-email@example.com`
+
+3. **For Production (Vercel)**:
+   - Go to your Vercel project settings
+   - Navigate to Environment Variables
+   - Add the same variables there
+
+4. **Update the From Email** (Optional):
+   - In `api/contact.ts`, update the `from` field to use your verified domain
+   - Replace `onboarding@resend.dev` with your verified email address
 
 ### Building for Production
 
@@ -174,7 +206,7 @@ Edit `index.html` to update page title and meta tags:
 - **CMS Integration**: Connect to Sanity, Contentful, or Strapi
 - **Analytics**: Add Google Analytics or Plausible
 - **SEO**: Implement React Helmet for better SEO
-- **Backend**: Connect contact form to a backend service or email API
+- **Email Customization**: Customize email templates and add email notifications
 - **Testing**: Add unit and integration tests with Vitest and React Testing Library
 - **Accessibility**: Enhance ARIA labels and keyboard navigation
 - **Multi-language**: Add i18n support for multiple languages
