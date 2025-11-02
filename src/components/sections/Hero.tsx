@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiArrowDown, FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
 import AnimatedBlobBackground from '../ui/AnimatedBlobBackground';
 
