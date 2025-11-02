@@ -1,8 +1,7 @@
 {
   "functions": {
     "api/contact.ts": {
-      "runtime": "vercel-node@4.0.0"
+      "maxDuration": 10
     }
   }
 }
-
