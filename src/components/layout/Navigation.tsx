@@ -47,7 +47,7 @@ export default function Navigation() {
         isOpen
           ? 'bg-white/60 backdrop-blur-sm shadow-lg'
           : scrolled
-          ? 'bg-white/40 backdrop-blur-sm shadow-lg'
+          ? 'bg-white/40 backdrop-blur-sm shadow-lg lg:bg-white/80'
           : 'bg-transparent'
       }`}
             
