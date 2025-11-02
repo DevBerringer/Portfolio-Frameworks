@@ -45,7 +45,7 @@ export default function Projects() {
   const getNextIndex = () => (currentIndex + 1) % projects.length;
 
   return (
-    <section id="projects" className="py-10 bg-gray-50 overflow-hidden">
+    <section id="projects" className="py-10 bg-gray-50 overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

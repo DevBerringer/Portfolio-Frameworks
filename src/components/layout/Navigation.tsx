@@ -25,7 +25,16 @@ export default function Navigation() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Calculate offset for fixed navigation bar (approximately 80-100px)
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
+        behavior: 'smooth'
+      });
+      
       setIsOpen(false);
     }
   };

@@ -18,7 +18,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-white">
+    <section id="about" className="relative py-20 bg-white scroll-mt-20">
       {/* Fade-in gradient at top for smooth transition from Hero */}
       <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
       
