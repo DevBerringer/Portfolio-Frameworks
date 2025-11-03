@@ -10,7 +10,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  category: 'frontend' | 'backend' | 'tools' | 'design' | 'AI';
+  category: 'frontend' | 'backend' | 'cloud tools' | 'design' | 'AI';
 }
 
 export interface ContactFormData {

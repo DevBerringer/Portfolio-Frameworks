@@ -139,7 +139,7 @@ export const skills: Skill[] = [
 ];
 ```
 
-Categories: `frontend`, `backend`, `tools`, `design`
+Categories: `frontend`, `backend`, `cloud tools`, `design`
 
 ### 4. Update Social Links
 

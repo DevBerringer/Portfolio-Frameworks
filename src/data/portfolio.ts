@@ -51,11 +51,11 @@ export const skills: Skill[] = [
   { name: 'PostgreSQL', category: 'backend' },
   { name: 'MS SQL', category: 'backend' },
   { name: 'MongoDB', category: 'backend' },
-  { name: 'Git', category: 'tools' },
-  { name: 'Docker', category: 'tools' },
-  { name: 'AWS Lambda', category: 'tools' },
-  { name: 'Kubernetes', category: 'tools' },
-  { name: 'PCF', category: 'tools' },
+  { name: 'Git', category: 'cloud tools' },
+  { name: 'Docker', category: 'cloud tools' },
+  { name: 'AWS Lambda', category: 'cloud tools' },
+  { name: 'Kubernetes', category: 'cloud tools' },
+  { name: 'PCF', category: 'cloud tools' },
   { name: 'Ampcode', category: 'AI' },
   { name: 'Anthropic Claude', category: 'AI' },
   { name: 'Cursor', category: 'AI' },
@@ -77,9 +77,11 @@ export const personalInfo = {
   name: 'Blake Berringer',
   title: 'Full Stack Developer',
   tagline: 'Building exceptional digital experiences',
-  about: `I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I transform ideas into elegant, scalable solutions.
+  about: `I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies like React and Vite, I transform ideas into elegant, scalable solutions.
 
-When I'm not coding, you'll find me exploring new technologies, contributing to open source, or sharing knowledge with the developer community.`,
+  Professionally, I've contributed to impactful systems at GM, including designing a Pulsar-based event router in Java and Quarkus that increased throughput by over 100% and standardized multi-API orchestration. My work spans fault-tolerant architecture, maintainable codebases, and developer experience improvements, from onboarding flows to automated testing and TDD.
+  
+  When I'm not coding, you'll find me exploring new technologies or sharing knowledge with the developer community. I thrive on refining systems, dissecting complex stacks, and building tools that make engineering more joyful and efficient`,
   email: 'Blake.Berringer.Work@gmail.com',
   location: 'Austin, TX',
   availability: 'Available for freelance projects',

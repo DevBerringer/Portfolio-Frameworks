@@ -3,10 +3,12 @@ import { FiAward, FiCoffee, FiCode, FiMapPin } from 'react-icons/fi';
 import { personalInfo, skills } from '../../data/portfolio';
 
 export default function About() {
+  const category = 'cloud tools';
+
   const skillCategories = {
     frontend: skills.filter((s) => s.category === 'frontend'),
     backend: skills.filter((s) => s.category === 'backend'),
-    tools: skills.filter((s) => s.category === 'tools'),
+    [category]: skills.filter((s) => s.category === 'cloud tools'),
     design: skills.filter((s) => s.category === 'design'),
     AI: skills.filter((s) => s.category === 'AI'),
   };
@@ -47,7 +49,7 @@ export default function About() {
             transition={{ duration: 0.3 }}
           >
             <div className="prose prose-lg">
-              {personalInfo.about.split('\n\n').map((paragraph, index) => (
+              {personalInfo.about.split('\n').map((paragraph, index) => (
                 <p key={index} className="text-gray-600 mb-4">
                   {paragraph}
                 </p>
