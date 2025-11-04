@@ -16,7 +16,7 @@ export default function About() {
   const stats = [
     { icon: <FiCode />, label: 'Years Experience', value: '5+' },
     { icon: <FiCoffee />, label: 'Cups of Coffee', value: '∞' },
-    { icon: <FiAward />, label: 'Profestional Projects Completed', value: '10+' },
+    { icon: <FiAward />, label: 'Professional Projects Completed', value: '10+' },
   ];
 
   return (
