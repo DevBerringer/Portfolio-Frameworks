@@ -81,7 +81,7 @@ export const personalInfo = {
 
   Professionally, I've contributed to impactful systems at GM, including designing a Pulsar-based event router in Java and Quarkus that increased throughput by over 100% and standardized multi-API orchestration. My work spans fault-tolerant architecture, maintainable codebases, and developer experience improvements, from onboarding flows to automated testing and TDD.
   
-  When I'm not coding, you'll find me exploring new technologies or sharing knowledge with the developer community. I thrive on refining systems, dissecting complex stacks, and building tools that make engineering more joyful and efficient`,
+  When I'm not coding, you'll find me exploring new technologies or sharing knowledge with the developer community. I thrive on refining systems, dissecting complex stacks, and building tools that make engineering more intuitive and efficient.`,
   email: 'Blake.Berringer.Work@gmail.com',
   location: 'Austin, TX',
   availability: 'Available for freelance projects',

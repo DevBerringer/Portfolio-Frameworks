@@ -58,7 +58,7 @@ export default function Projects() {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Here are some of my recent works. Each project represents a unique challenge
+            Here is some of my recent work. Each project represents a unique challenge
             and showcases different aspects of my skillset.
           </p>
         </motion.div>
