@@ -19,7 +19,7 @@ interface AnimatedBlobBackgroundProps {
 
 const defaultBlobs: BlobConfig[] = [
   {
-    className: "absolute -top-32 -right-32 w-96 h-96 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60",
+    className: "absolute -top-32 -right-32 w-96 h-96 bg-primary-300 dark:bg-primary-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-60 dark:opacity-20",
     animation: {
       x: [0, 50, -30, 0],
       y: [0, -60, 40, 0],
@@ -28,7 +28,7 @@ const defaultBlobs: BlobConfig[] = [
     duration: 20,
   },
   {
-    className: "absolute -bottom-32 -left-32 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60",
+    className: "absolute -bottom-32 -left-32 w-80 h-80 bg-purple-300 dark:bg-purple-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-60 dark:opacity-20",
     animation: {
       x: [0, -40, 50, 0],
       y: [0, 60, -30, 0],
@@ -38,7 +38,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 2,
   },
   {
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-300 dark:bg-pink-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-50 dark:opacity-20",
     animation: {
       x: [0, 30, -20, 0],
       y: [0, -40, 25, 0],
@@ -48,7 +48,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 1,
   },
   {
-    className: "absolute top-20 left-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-55",
+    className: "absolute top-20 left-20 w-64 h-64 bg-blue-300 dark:bg-blue-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-55 dark:opacity-20",
     animation: {
       x: [0, 40, -25, 0],
       y: [0, 30, -45, 0],
@@ -58,7 +58,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 0.5,
   },
   {
-    className: "absolute bottom-20 right-20 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-55",
+    className: "absolute bottom-20 right-20 w-72 h-72 bg-cyan-300 dark:bg-cyan-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-55 dark:opacity-20",
     animation: {
       x: [0, -35, 45, 0],
       y: [0, -50, 35, 0],
@@ -68,7 +68,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 3,
   },
   {
-    className: "absolute top-32 left-1/2 -translate-x-1/2 w-56 h-56 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50",
+    className: "absolute top-32 left-1/2 -translate-x-1/2 w-56 h-56 bg-orange-300 dark:bg-orange-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-50 dark:opacity-20",
     animation: {
       x: [0, 25, -35, 0],
       y: [0, 50, -30, 0],
@@ -78,7 +78,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 1.5,
   },
   {
-    className: "absolute bottom-40 left-1/4 w-96 h-64 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-45",
+    className: "absolute bottom-40 left-1/4 w-96 h-64 bg-indigo-300 dark:bg-indigo-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-45 dark:opacity-20",
     animation: {
       x: [0, -50, 40, 0],
       y: [0, 35, -40, 0],
@@ -88,7 +88,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 4,
   },
   {
-    className: "absolute top-1/2 right-1/4 w-48 h-48 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50",
+    className: "absolute top-1/2 right-1/4 w-48 h-48 bg-yellow-300 dark:bg-yellow-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-50 dark:opacity-20",
     animation: {
       x: [0, -30, 50, 0],
       y: [0, -25, 40, 0],
@@ -98,7 +98,7 @@ const defaultBlobs: BlobConfig[] = [
     delay: 2.5,
   },
   {
-    className: "absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40",
+    className: "absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-300 dark:bg-violet-700 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-40 dark:opacity-20",
     animation: {
       x: [0, 60, -40, 0],
       y: [0, -70, 50, 0],
@@ -168,7 +168,7 @@ export default function AnimatedBlobBackground({
       })}
       
       {/* Gradient Overlay for Depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary-50/30 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-50/30 via-transparent to-transparent dark:from-primary-900/10 pointer-events-none" />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiActivity, FiShield ,FiCpu, FiCode, FiMapPin } from 'react-icons/fi';
-import { personalInfo, skills } from '../../data/portfolio';
+import { personalInfo, skills, workExperience } from '../../data/portfolio';
+import { Link } from 'react-router-dom';
 
 export default function About() {
   const category = 'cloud tools';
@@ -17,15 +18,15 @@ export default function About() {
     { icon: <FiCode />, label: 'Years Experience', value: '5+' },
     { icon: <FiCpu />, label: 'Event Processing', value: 'Real-time' },
     { icon: <FiShield />, label: 'Test Coverage', value: '90%+' },
-    { icon: <FiActivity />, label: 'System Uptime', value: '99.9%' },
+    { icon: <FiActivity />, label: 'System Uptime', value: '99.99%' },
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-white scroll-mt-20">
+    <section id="about" className="relative py-20 bg-app scroll-mt-20">
       {/* Fade-in gradient at top for smooth transition from Hero */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-40 fade-to-app-bottom pointer-events-none" />
       
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,10 +34,10 @@ export default function About() {
           transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             About <span className="text-gradient">Me</span>
           </h2>
-          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 xl:text-lg max-w-2xl mx-auto">
             Get to know me better
           </p>
         </motion.div>
@@ -51,38 +52,44 @@ export default function About() {
           >
             <div className="prose prose-lg">
               {personalInfo.about.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-gray-600 mb-4 xl:text-lg">
+                <p key={index} className="text-gray-600 dark:text-gray-300 mb-4 xl:text-lg">
                   {paragraph}
                 </p>
               ))}
             </div>
 
             <div className="mt-8 space-y-4">
-              <div className="flex items-center text-gray-700">
+              <div className="flex items-center text-gray-700 dark:text-gray-300">
                 <FiMapPin className="mr-3 text-primary-600" size={20} />
                 <span>{personalInfo.location}</span>
               </div>
               <div className="flex items-center">
                 <span className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
-                <span className="text-gray-700">{personalInfo.availability}</span>
+                <span className="text-gray-700 dark:text-gray-300">{personalInfo.availability}</span>
               </div>
             </div>
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-4 w-fit"
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl glass aspect-square w-40 md:w-48"           
+                  className="flex flex-col items-center justify-center p-4 rounded-2xl glass aspect-square w-36 md:w-40 mx-2"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl">
+                  <div
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl"
+                    style={{
+                      backgroundColor: 'var(--color-primary-soft)',
+                      color: 'var(--color-primary)',
+                    }}
+                  >
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-gray-600 dark:text-gray-400 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -95,7 +102,7 @@ export default function About() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.3 }}
           >
-            <h3 className="text-2xl xl:text-3xl font-bold mb-6">Skills & Technologies</h3>
+            <h3 className="text-2xl xl:text-3xl font-bold mb-6 dark:text-white">Skills & Technologies</h3>
             
             <div className="space-y-6">
               {Object.entries(skillCategories).map(([category, categorySkills]) => (

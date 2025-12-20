@@ -46,8 +46,8 @@ export default function Projects() {
   const getNextIndex = () => (currentIndex + 1) % projects.length;
 
   return (
-    <section id="projects" className="py-10 bg-gray-50 overflow-hidden scroll-mt-20">
-      <div className="container mx-auto">
+    <section id="projects" className="py-10 bg-app overflow-hidden scroll-mt-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,10 +55,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             Featured <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 xl:text-lg max-w-2xl mx-auto">
             Here is some of my work. Each project represents a unique challenge
             and showcases different aspects of my skillset.
           </p>
@@ -147,7 +147,7 @@ export default function Projects() {
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-primary-600 w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                 }`}
                 aria-label={`Go to project ${index + 1}`}
               />
@@ -250,7 +250,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
         {!isLast && (
           <div className="w-1 flex-1 bg-gradient-to-b from-primary-500 via-primary-400/50 to-transparent opacity-20" />
         )}
-        <div className="absolute top-0 w-6 h-6 bg-primary-600 rounded-full border-4 border-gray-50 shadow-lg z-10" />
+        <div className="absolute top-0 w-6 h-6 bg-primary-600 rounded-full border-4 border-gray-50 dark:border-gray-800 shadow-lg z-10" />
       </div>
 
       {/* Content area - offset from timeline */}
@@ -284,7 +284,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-          className="text-4xl font-black text-gray-900 mb-3 leading-tight tracking-tight"
+          className="text-4xl font-black text-gray-900 dark:text-white mb-3 leading-tight tracking-tight"
         >
           {project.title}
         </motion.h2>
@@ -300,7 +300,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           {project.tags.map((tag, tagIndex) => (
             <span 
               key={tag}
-              className="text-xs font-semibold text-primary-600 uppercase tracking-wider"
+              className="text-xs font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-wider"
             >
               {tag}{tagIndex < project.tags.length - 1 && ' • '}
             </span>
@@ -313,7 +313,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
-          className="text-gray-700 mb-6 leading-relaxed text-[16px] max-w-none font-light"
+          className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-[16px] max-w-none font-light"
           style={{ lineHeight: '1.75' }}
         >
           {project.description}
@@ -325,22 +325,16 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
-          className="flex gap-4 pt-4 border-b mb-12 border-gray-200 min-h-[48px] items-center"
+          className="flex gap-4 pt-4 border-b mb-12 border-gray-200 dark:border-gray-700 min-h-[48px] items-center"
         >
           <Link
             to={`/project/${project.id}`}
-            className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+            className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors group"
           >
             <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
             <span>View Details</span>
-            <span className="text-gray-400">→</span>
+            <span className="text-gray-400 dark:text-gray-500">→</span>
           </Link>
-          {!project.demoUrl && !project.githubUrl && (
-            <span className="flex items-center gap-2 text-gray-400 font-medium">
-              <FiLock size={18} />
-              Private Repository
-            </span>
-          )}
         </motion.div>
       </div>
     </motion.article>

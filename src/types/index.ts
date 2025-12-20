@@ -36,3 +36,21 @@ export interface SocialLink {
   icon: string;
 }
 
+export interface WorkExperience {
+  id: string;
+  company: string;
+  companyUrl?: string;
+  location?: string;
+  title: string;
+  start?: string;
+  end?: string;
+  startDate?: string;
+  endDate?: string | null;
+  employmentType?: string;
+  logo?: string;
+  overview?: string;
+  responsibilities?: string[];
+  achievements?: string[];
+  techStack?: string[];
+}
+

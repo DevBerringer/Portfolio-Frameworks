@@ -4,6 +4,8 @@ import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
 import AnimatedBlobBackground from '../ui/AnimatedBlobBackground';
 
+const MotionLink = motion.create(Link);
+
 const iconMap: Record<string, React.ReactElement> = {
   github: <FiGithub size={24} />,
   linkedin: <FiLinkedin size={24} />,
@@ -22,12 +24,12 @@ export default function Hero() {
   const animationDuration = isMobile ? 0.3 : 0.5;
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-hero">
       {/* Animated Background Elements */}
       <AnimatedBlobBackground intensity="high" />
 
       {/* Fade-out gradient at bottom for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 hero-fade-top pointer-events-none z-10" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -36,7 +38,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-5xl md:text-7xl font-bold mb-6 leading-tight dark:text-white"
           >
             Hi, I'm{' '}
             <span className="text-gradient">{personalInfo.name}</span>
@@ -54,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay * 2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-4"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4"
           >
             {personalInfo.title}
           </motion.p>
@@ -63,7 +65,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay * 3 }}
-            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto xl:text-xl"
+            className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto xl:text-xl"
           >
             {personalInfo.tagline}
           </motion.p>
@@ -79,19 +81,18 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToProjects}
-              className="bg-primary-600 text-white px-8 py-4 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/50"
+              className="bg-primary-600 text-white px-8 py-4 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/50 dark:shadow-primary-900/30 cursor-pointer"
             >
               View My Work
             </motion.button>
-            <motion.div
+            <MotionLink
+              to="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-medium hover:border-primary-600 hover:text-primary-600 transition-colors"
+              className="inline-flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-full font-medium hover:border-primary-600 hover:text-primary-600 dark:hover:border-primary-400 dark:hover:text-primary-400 transition-colors"
             >
-              <Link to="/contact" className="block w-full h-full">
-                Get In Touch
-              </Link>
-            </motion.div>
+              Get In Touch
+            </MotionLink>
           </motion.div>
 
           {/* Social Links */}

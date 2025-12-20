@@ -3,6 +3,7 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
+import WorkDetail from './pages/WorkDetail';
 import ScrollToTop from './components/ui/ScrollToTop';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/work/:id" element={<WorkDetail />} />
         </Routes>
       </Layout>
     </Router>

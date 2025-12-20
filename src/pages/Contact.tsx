@@ -97,7 +97,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <div className="min-h-screen bg-app py-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -105,10 +105,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">
             Get In <span className="text-gradient">Touch</span>
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Have a project in mind or just want to chat? Feel free to reach out!
           </p>
           {import.meta.env.DEV && (
@@ -125,8 +125,8 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold mb-6">Let's talk about everything!</h3>
-            <p className="text-gray-600 mb-8 xl:text-lg">
+            <h3 className="text-2xl font-bold mb-6 dark:text-white">Let's talk about everything!</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-8 xl:text-lg">
               Don't hesitate to reach out if you have any questions or just want to connect.
               I'm always open to discussing new projects, creative ideas, or opportunities.
             </p>
@@ -138,20 +138,20 @@ export default function Contact() {
                   whileHover={{ x: 5 }}
                   className="flex items-start"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg flex items-center justify-center mr-4">
                     {info.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">{info.label}</h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{info.label}</h4>
                     {info.href ? (
                       <a
                         href={info.href}
-                        className="text-gray-600 hover:text-primary-600 transition-colors"
+                        className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-gray-600 xl:text-lg">{info.value}</p>
+                      <p className="text-gray-600 dark:text-gray-300 xl:text-lg">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -165,7 +165,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-12 hidden md:block"
             >
-              <div className="w-full h-64 bg-gradient-to-br from-primary-100 to-purple-100 rounded-2xl flex items-center justify-center">
+              <div className="w-full h-64 bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 rounded-2xl flex items-center justify-center">
                 <div className="text-6xl">📬</div>
               </div>
             </motion.div>
@@ -179,7 +179,7 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Your Name
                 </label>
                 <input
@@ -189,13 +189,26 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                  className="w-full px-4 py-3 rounded-lg border transition-all outline-none"
+                  style={{
+                    backgroundColor: 'var(--color-surface)',
+                    color: 'var(--color-text)',
+                    borderColor: 'var(--color-border)',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.boxShadow = '0 0 0 2px color-mix(in srgb, var(--color-primary) 40%, transparent)';
+                    e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'var(--color-border)';
+                  }}
                   placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Your Email
                 </label>
                 <input
@@ -205,13 +218,26 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                  className="w-full px-4 py-3 rounded-lg border transition-all outline-none"
+                  style={{
+                    backgroundColor: 'var(--color-surface)',
+                    color: 'var(--color-text)',
+                    borderColor: 'var(--color-border)',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.boxShadow = '0 0 0 2px color-mix(in srgb, var(--color-primary) 40%, transparent)';
+                    e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'var(--color-border)';
+                  }}
                   placeholder="john@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Your Message
                 </label>
                 <textarea
@@ -221,7 +247,20 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-lg border transition-all outline-none resize-none"
+                  style={{
+                    backgroundColor: 'var(--color-surface)',
+                    color: 'var(--color-text)',
+                    borderColor: 'var(--color-border)',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.boxShadow = '0 0 0 2px color-mix(in srgb, var(--color-primary) 40%, transparent)';
+                    e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'var(--color-border)';
+                  }}
                   placeholder="Tell me about your project..."
                 />
               </div>

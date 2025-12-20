@@ -18,11 +18,11 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-16">
+    <div className="min-h-screen bg-app pb-16">
       <ProjectHero project={project} />
 
       <div className="mx-auto mt-12 flex max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] flex-col gap-12 px-8 sm:px-12 lg:px-16">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] border-b border-slate-200 pb-10">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] border-b border-theme pb-10">
           {project.detailedDescription && (
             <ProjectOverview detailedDescription={project.detailedDescription} />
           )}
