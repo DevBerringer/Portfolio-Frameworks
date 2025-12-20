@@ -21,9 +21,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-white scroll-mt-20">
+    <section id="about" className="relative py-20 bg-white scroll-mt-20 dark:bg-slate-950">
       {/* Fade-in gradient at top for smooth transition from Hero */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none dark:via-slate-950/60 dark:to-slate-950" />
       
       <div className="container mx-auto relative z-10">
         <motion.div
@@ -36,7 +36,7 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
             About <span className="text-gradient">Me</span>
           </h2>
-          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto dark:text-slate-300">
             Get to know me better
           </p>
         </motion.div>
@@ -51,20 +51,20 @@ export default function About() {
           >
             <div className="prose prose-lg">
               {personalInfo.about.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-gray-600 mb-4 xl:text-lg">
+                <p key={index} className="text-gray-600 mb-4 xl:text-lg dark:text-slate-300">
                   {paragraph}
                 </p>
               ))}
             </div>
 
             <div className="mt-8 space-y-4">
-              <div className="flex items-center text-gray-700">
+              <div className="flex items-center text-gray-700 dark:text-slate-200">
                 <FiMapPin className="mr-3 text-primary-600" size={20} />
                 <span>{personalInfo.location}</span>
               </div>
               <div className="flex items-center">
                 <span className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
-                <span className="text-gray-700">{personalInfo.availability}</span>
+                <span className="text-gray-700 dark:text-slate-200">{personalInfo.availability}</span>
               </div>
             </div>
             {/* Stats */}
@@ -76,13 +76,13 @@ export default function About() {
                   whileHover={{ y: -5 }}
                   className="flex flex-col items-center justify-center p-6 rounded-2xl glass aspect-square w-40 md:w-48"           
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl dark:bg-primary-500/20 dark:text-primary-300">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
+                  <div className="text-3xl font-bold text-gray-900 mb-2 dark:text-slate-100">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-gray-600 dark:text-slate-400">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -95,12 +95,12 @@ export default function About() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.3 }}
           >
-            <h3 className="text-2xl xl:text-3xl font-bold mb-6">Skills & Technologies</h3>
+            <h3 className="text-2xl xl:text-3xl font-bold mb-6 dark:text-slate-100">Skills & Technologies</h3>
             
             <div className="space-y-6">
               {Object.entries(skillCategories).map(([category, categorySkills]) => (
                 <div key={category}>
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase mb-3">
+                  <h4 className="text-sm font-semibold text-gray-500 uppercase mb-3 dark:text-slate-400">
                     {category}
                   </h4>
                   <div className="flex flex-wrap gap-2">
@@ -108,7 +108,7 @@ export default function About() {
                       <motion.span
                         key={skill.name}
                         whileHover={{ scale: 1.05 }}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-primary-100 hover:text-primary-700 transition-colors cursor-default"
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-primary-100 hover:text-primary-700 transition-colors cursor-default dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-primary-500/20 dark:hover:text-primary-200"
                       >
                         {skill.name}
                       </motion.span>
@@ -123,4 +123,3 @@ export default function About() {
     </section>
   );
 }
-

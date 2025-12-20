@@ -46,7 +46,7 @@ export default function Projects() {
   const getNextIndex = () => (currentIndex + 1) % projects.length;
 
   return (
-    <section id="projects" className="py-10 bg-gray-50 overflow-hidden scroll-mt-20">
+    <section id="projects" className="py-10 bg-gray-50 overflow-hidden scroll-mt-20 dark:bg-slate-950">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,7 @@ export default function Projects() {
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
             Featured <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto dark:text-slate-300">
             Here is some of my work. Each project represents a unique challenge
             and showcases different aspects of my skillset.
           </p>
@@ -147,7 +147,7 @@ export default function Projects() {
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-primary-600 w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    : 'bg-gray-300 hover:bg-gray-400 dark:bg-slate-700 dark:hover:bg-slate-600'
                 }`}
                 aria-label={`Go to project ${index + 1}`}
               />
@@ -177,7 +177,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-colors"
+            className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-colors dark:border-primary-400 dark:text-primary-300 dark:hover:bg-primary-400 dark:hover:text-slate-950"
           >
             <FiGithub className="mr-2" size={20} />
             View More on GitHub
@@ -215,7 +215,7 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
             <div className="flex gap-3">
               <Link
                 to={`/project/${project.id}`}
-                className="inline-flex items-center px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
                 onClick={(e) => e.stopPropagation()}
               >
                 <FiExternalLink className="mr-2" size={18} />
@@ -250,7 +250,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
         {!isLast && (
           <div className="w-1 flex-1 bg-gradient-to-b from-primary-500 via-primary-400/50 to-transparent opacity-20" />
         )}
-        <div className="absolute top-0 w-6 h-6 bg-primary-600 rounded-full border-4 border-gray-50 shadow-lg z-10" />
+        <div className="absolute top-0 w-6 h-6 bg-primary-600 rounded-full border-4 border-gray-50 shadow-lg z-10 dark:border-slate-900" />
       </div>
 
       {/* Content area - offset from timeline */}
@@ -284,7 +284,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-          className="text-4xl font-black text-gray-900 mb-3 leading-tight tracking-tight"
+          className="text-4xl font-black text-gray-900 mb-3 leading-tight tracking-tight dark:text-slate-100"
         >
           {project.title}
         </motion.h2>
@@ -298,9 +298,9 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           className="flex flex-wrap gap-2 mb-4"
         >
           {project.tags.map((tag, tagIndex) => (
-            <span 
+            <span
               key={tag}
-              className="text-xs font-semibold text-primary-600 uppercase tracking-wider"
+              className="text-xs font-semibold text-primary-600 uppercase tracking-wider dark:text-primary-300"
             >
               {tag}{tagIndex < project.tags.length - 1 && ' • '}
             </span>
@@ -313,7 +313,7 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
-          className="text-gray-700 mb-6 leading-relaxed text-[16px] max-w-none font-light"
+          className="text-gray-700 mb-6 leading-relaxed text-[16px] max-w-none font-light dark:text-slate-300"
           style={{ lineHeight: '1.75' }}
         >
           {project.description}
@@ -325,18 +325,18 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
-          className="flex gap-4 pt-4 border-b mb-12 border-gray-200 min-h-[48px] items-center"
+          className="flex gap-4 pt-4 border-b mb-12 border-gray-200 min-h-[48px] items-center dark:border-slate-800"
         >
           <Link
             to={`/project/${project.id}`}
-            className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+            className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group dark:text-primary-300 dark:hover:text-primary-200"
           >
             <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
             <span>View Details</span>
-            <span className="text-gray-400">→</span>
+            <span className="text-gray-400 dark:text-slate-500">→</span>
           </Link>
           {!project.demoUrl && !project.githubUrl && (
-            <span className="flex items-center gap-2 text-gray-400 font-medium">
+            <span className="flex items-center gap-2 text-gray-400 font-medium dark:text-slate-500">
               <FiLock size={18} />
               Private Repository
             </span>

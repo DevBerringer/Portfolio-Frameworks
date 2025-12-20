@@ -22,12 +22,12 @@ export default function Hero() {
   const animationDuration = isMobile ? 0.3 : 0.5;
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Animated Background Elements */}
       <AnimatedBlobBackground intensity="high" />
 
       {/* Fade-out gradient at bottom for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10 dark:from-slate-950 dark:via-slate-950/70" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -54,7 +54,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay * 2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-4"
+            className="text-xl md:text-2xl text-gray-600 mb-4 dark:text-slate-200"
           >
             {personalInfo.title}
           </motion.p>
@@ -63,7 +63,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay * 3 }}
-            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto xl:text-xl"
+            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto xl:text-xl dark:text-slate-300"
           >
             {personalInfo.tagline}
           </motion.p>
@@ -79,14 +79,14 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToProjects}
-              className="bg-primary-600 text-white px-8 py-4 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/50"
+              className="bg-primary-600 text-white px-8 py-4 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/50 dark:bg-primary-500 dark:hover:bg-primary-400"
             >
               View My Work
             </motion.button>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-medium hover:border-primary-600 hover:text-primary-600 transition-colors"
+              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-medium hover:border-primary-600 hover:text-primary-600 transition-colors dark:border-slate-700 dark:text-slate-200 dark:hover:border-primary-400 dark:hover:text-primary-300"
             >
               <Link to="/contact" className="block w-full h-full">
                 Get In Touch
@@ -108,7 +108,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
-                className="text-gray-600 hover:text-primary-600 transition-colors"
+                className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-300"
                 aria-label={link.name}
               >
                 {iconMap[link.icon]}
@@ -120,4 +120,3 @@ export default function Hero() {
     </section>
   );
 }
-

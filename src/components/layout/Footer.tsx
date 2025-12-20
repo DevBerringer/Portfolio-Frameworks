@@ -15,38 +15,38 @@ export default function Footer() {
   const scrollToSection = useScrollToSection();
 
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
+    <footer className="bg-gray-50 border-t border-gray-200 dark:bg-slate-950 dark:border-slate-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
             <h3 className="text-xl font-bold text-gradient mb-4">Portfolio</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-slate-300">
               Building exceptional digital experiences with modern technologies.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-gray-900 mb-4 dark:text-slate-100">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" onClick={() => scrollToSection('#home')} className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#home')} className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-400">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={() => scrollToSection('#about')} className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#about')} className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-400">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={() => scrollToSection('#projects')} className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#projects')} className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-400">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/contact" className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-400">
                   Contact
                 </Link>
               </li>
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Social Links */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Connect</h4>
+            <h4 className="font-semibold text-gray-900 mb-4 dark:text-slate-100">Connect</h4>
             <div className="flex space-x-4">
               {socialLinks.map((link) => (
                 <a
@@ -63,7 +63,7 @@ export default function Footer() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                  className="text-gray-600 hover:text-primary-600 transition-colors dark:text-slate-300 dark:hover:text-primary-400"
                   aria-label={link.name}
                 >
                   {iconMap[link.icon]}
@@ -74,9 +74,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200">
+        <div className="pt-8 border-t border-gray-200 dark:border-slate-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 text-sm mb-4 md:mb-0">
+            <p className="text-gray-600 text-sm mb-4 md:mb-0 dark:text-slate-400">
               © {currentYear} Portfolio. All rights reserved.
             </p>
           </div>
@@ -85,4 +85,3 @@ export default function Footer() {
     </footer>
   );
 }
-

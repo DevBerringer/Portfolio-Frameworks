@@ -6,12 +6,12 @@ export default function ProjectOverview({ detailedDescription }: ProjectOverview
   return (
     <section className="space-y-6">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">
           Overview
         </p>
-        <h2 className="mt-3 text-2xl font-semibold text-slate-900">About this project</h2>
+        <h2 className="mt-3 text-2xl font-semibold text-slate-900 dark:text-slate-100">About this project</h2>
       </div>
-      <p className="text-base leading-relaxed text-slate-600 xl:text-lg">
+      <p className="text-base leading-relaxed text-slate-600 xl:text-lg dark:text-slate-300">
         {detailedDescription}
       </p>
     </section>
