@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
+import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import { projects } from '../../data/portfolio';
 import type { Project } from '../../types';
 

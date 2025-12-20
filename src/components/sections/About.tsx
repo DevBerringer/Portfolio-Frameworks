@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiActivity, FiShield ,FiCpu, FiCode, FiMapPin } from 'react-icons/fi';
-import { personalInfo, skills, workExperience } from '../../data/portfolio';
-import { Link } from 'react-router-dom';
+import { personalInfo, skills } from '../../data/portfolio';
 
 export default function About() {
   const category = 'cloud tools';
