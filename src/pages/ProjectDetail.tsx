@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/portfolio';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
@@ -5,6 +6,12 @@ import { FiExternalLink, FiGithub } from 'react-icons/fi';
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const project = projects.find(p => p.id === id);
+  const screenshots = project?.screenshots?.length ? project.screenshots : project?.image ? [project.image] : [];
+  const [activeScreenshot, setActiveScreenshot] = useState(screenshots[0] ?? '');
+
+  useEffect(() => {
+    setActiveScreenshot(screenshots[0] ?? '');
+  }, [project?.id, screenshots]);
 
   if (!project) {
     return (
@@ -35,7 +42,7 @@ const ProjectDetail = () => {
             <span className="text-white">{project.title}</span>
           </nav>
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
+          <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300">
                 Case Study
@@ -92,125 +99,145 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl shadow-slate-950/40 backdrop-blur">
+            <div className="flex flex-col gap-6">
               <img
                 src={project.image}
                 alt={project.title}
-                className="h-72 w-full rounded-2xl object-cover shadow-lg"
+                className="h-72 w-full rounded-3xl object-cover shadow-2xl shadow-slate-900/40"
               />
-              <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-slate-100">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-300">Status</p>
-                  <p className="mt-2 text-base font-semibold">
+              <dl className="grid grid-cols-2 gap-4 text-sm text-slate-100">
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.2em] text-slate-300">Status</dt>
+                  <dd className="mt-2 text-base font-semibold">
                     {project.githubUrl ? 'Open Source' : 'Private Build'}
-                  </p>
+                  </dd>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-300">Completed</p>
-                  <p className="mt-2 text-base font-semibold">
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.2em] text-slate-300">Completed</dt>
+                  <dd className="mt-2 text-base font-semibold">
                     {project.date ? new Date(project.date).toLocaleDateString() : 'In progress'}
-                  </p>
+                  </dd>
                 </div>
-              </div>
+              </dl>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
         {project.detailedDescription && (
-          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
-                  Overview
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-slate-900">About this project</h2>
-              </div>
+          <section className="grid gap-6 border-b border-slate-200 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                Overview
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-900">About this project</h2>
             </div>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
+            <p className="text-base leading-relaxed text-slate-600">
               {project.detailedDescription}
             </p>
           </section>
         )}
 
-        {project.technologies && project.technologies.length > 0 && (
-          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <div className="flex items-center justify-between">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          {project.technologies && project.technologies.length > 0 && (
+            <section className="space-y-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
                   Stack
                 </p>
-                <h2 className="mt-2 text-2xl font-semibold text-slate-900">Technologies used</h2>
+                <h2 className="mt-3 text-2xl font-semibold text-slate-900">Technologies used</h2>
               </div>
-            </div>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {project.technologies.map((tech, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-base font-semibold text-slate-900">{tech.name}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{tech.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+              <div className="space-y-4">
+                {project.technologies.map((tech, index) => (
+                  <div key={index} className="border-b border-slate-200 pb-4 last:border-b-0">
+                    <h3 className="text-base font-semibold text-slate-900">{tech.name}</h3>
+                    <p className="mt-2 text-sm text-slate-600">{tech.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
-        {project.features && project.features.length > 0 && (
-          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
-                Highlights
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-900">Key outcomes</h2>
-            </div>
-            <ul className="mt-6 grid gap-4 md:grid-cols-2">
-              {project.features.map((feature, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                    ✓
-                  </span>
-                  <span className="text-sm font-medium text-slate-700">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+          {project.features && project.features.length > 0 && (
+            <section className="space-y-6">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                  Highlights
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-slate-900">Key outcomes</h2>
+              </div>
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {project.features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-slate-700">
+                    <span className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                      ✓
+                    </span>
+                    <span className="font-medium">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
 
         {project.challenges && (
-          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <section className="grid gap-6 border-b border-slate-200 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
                 Strategy
               </p>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-900">Challenges & solutions</h2>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-900">Challenges & solutions</h2>
             </div>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">{project.challenges}</p>
+            <p className="text-base leading-relaxed text-slate-600">{project.challenges}</p>
           </section>
         )}
 
-        {project.screenshots && project.screenshots.length > 0 && (
-          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
-                Gallery
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-900">Product visuals</h2>
+        {screenshots.length > 0 && (
+          <section className="space-y-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                  Gallery
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-slate-900">Product visuals</h2>
+              </div>
+              <p className="text-sm text-slate-500">Tap a thumbnail to preview.</p>
             </div>
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
-              {project.screenshots.map((screenshot, index) => (
-                <img
-                  key={index}
-                  src={screenshot}
-                  alt={`${project.title} screenshot ${index + 1}`}
-                  className="h-56 w-full rounded-2xl object-cover shadow-md"
-                />
-              ))}
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)]">
+              <div className="overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200/60">
+                {activeScreenshot && (
+                  <img
+                    src={activeScreenshot}
+                    alt={`${project.title} preview`}
+                    className="h-[22rem] w-full object-cover sm:h-[28rem]"
+                  />
+                )}
+              </div>
+              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-2">
+                {screenshots.map((screenshot, index) => {
+                  const isActive = screenshot === activeScreenshot;
+                  return (
+                    <button
+                      key={screenshot}
+                      type="button"
+                      onClick={() => setActiveScreenshot(screenshot)}
+                      className={`overflow-hidden rounded-2xl border transition ${
+                        isActive
+                          ? 'border-slate-900 ring-2 ring-slate-900/20'
+                          : 'border-slate-200 hover:border-slate-400'
+                      }`}
+                      aria-label={`View ${project.title} screenshot ${index + 1}`}
+                    >
+                      <img
+                        src={screenshot}
+                        alt={`${project.title} screenshot ${index + 1}`}
+                        className="h-20 w-full object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </section>
         )}
