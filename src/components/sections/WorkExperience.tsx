@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { workExperience } from '../../data/portfolio';
+import CompanyAvatar from '../ui/CompanyAvatar';
 
 export default function WorkExperienceSection() {
   return (
@@ -19,13 +20,14 @@ export default function WorkExperienceSection() {
               to={`/work/${job.id}`}
               className="bg-surface border border-theme p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px]"
             >
-              {job.logo ? (
-                <img src={job.logo} alt={job.company} className="w-20 h-20 object-contain mb-4" />
-              ) : (
-                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-surface-muted text-gray-800 dark:text-gray-200 mb-4 font-semibold text-lg">
-                  {job.company.split(' ').map((w) => w[0]).slice(0, 2).join('')}
-                </div>
-              )}
+              <CompanyAvatar
+                name={job.company}
+                logo={job.logo}
+                size="md"
+                shape="circle"
+                className="mb-4"
+                fallbackClassName="bg-surface-muted text-gray-800 dark:text-gray-200 font-semibold text-lg"
+              />
               <div className="text-base font-semibold text-center dark:text-white">{job.company}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400 text-center">{job.title}</div>
             </Link>
