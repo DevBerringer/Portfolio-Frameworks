@@ -1,13 +1,32 @@
 import { useParams, Link } from 'react-router-dom';
 import { workExperience } from '../data/portfolio';
 import { useScrollToSection } from '../hooks/useScrollToSection';
+import CompanyAvatar from '../components/ui/CompanyAvatar';
 
+const getCompanyLinkProps = (companyUrl?: string) =>
+  companyUrl
+    ? {
+        href: companyUrl,
+        target: '_blank',
+        rel: 'noreferrer',
+      }
+    : { href: '#' };
+
+const renderListItems = (items?: string[]) =>
+  items && items.length > 0 ? (
+    <ul className="list-disc list-inside space-y-2 text-[color:var(--color-text)]">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  ) : (
+    <p className="text-sm text-[color:var(--color-text-muted)]">No entries listed.</p>
+  );
 
 export default function WorkDetail() {
   const { id } = useParams<{ id: string }>();
   const job = workExperience.find((j) => j.id === id);
-    const scrollToSection = useScrollToSection();
-
+  const scrollToSection = useScrollToSection();
 
   if (!job) {
     return (
@@ -36,17 +55,18 @@ export default function WorkDetail() {
           <aside className="md:col-span-1">
             <div className="sticky top-24">
               <div className="flex items-center gap-4">
-                {job.logo ? (
-                  <img src={job.logo} alt={job.company} className="w-24 h-24 object-contain rounded-md border border-theme bg-surface p-2" />
-                ) : (
-                  <div className="w-24 h-24 flex items-center justify-center rounded-md bg-surface-muted border border-theme text-xl font-semibold text-[color:var(--color-text)]">{job.company.split(' ').map((w) => w[0]).slice(0,2).join('')}</div>
-                )}
+                <CompanyAvatar
+                  name={job.company}
+                  logo={job.logo}
+                  size="lg"
+                  shape="rounded"
+                  className="border border-theme bg-surface p-2"
+                  fallbackClassName="bg-surface-muted border border-theme text-xl font-semibold text-[color:var(--color-text)]"
+                />
                 <div>
                   <h1 className="text-xl font-bold text-[color:var(--color-text)]">{job.title}</h1>
                   <a
-                    href={job.companyUrl || '#'}
-                    target={job.companyUrl ? '_blank' : undefined}
-                    rel={job.companyUrl ? 'noreferrer' : undefined}
+                    {...getCompanyLinkProps(job.companyUrl)}
                     className="text-sm text-[color:var(--color-text-muted)] hover:underline"
                   >
                     {job.company}
@@ -67,8 +87,8 @@ export default function WorkDetail() {
                 <div className="mt-6">
                   <h4 className="text-sm font-medium text-[color:var(--color-text-muted)]">Tech stack</h4>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {job.techStack.map((t, i) => (
-                      <span key={i} className="inline-block px-3 py-1 text-sm bg-surface-muted border border-theme rounded-full text-[color:var(--color-text)]">{t}</span>
+                    {job.techStack.map((tech) => (
+                      <span key={tech} className="inline-block px-3 py-1 text-sm bg-surface-muted border border-theme rounded-full text-[color:var(--color-text)]">{tech}</span>
                     ))}
                   </div>
                 </div>
@@ -89,28 +109,12 @@ export default function WorkDetail() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <section className="p-6 rounded-lg bg-surface border border-theme shadow-sm">
                   <h3 className="text-md font-semibold mb-3 text-[color:var(--color-text)]">Responsibilities</h3>
-                  {job.responsibilities && job.responsibilities.length > 0 ? (
-                    <ul className="list-disc list-inside space-y-2 text-[color:var(--color-text)]">
-                      {job.responsibilities.map((r, i) => (
-                        <li key={i}>{r}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-sm text-[color:var(--color-text-muted)]">No responsibilities listed.</p>
-                  )}
+                  {renderListItems(job.responsibilities)}
                 </section>
 
                 <section className="p-6 rounded-lg bg-surface border border-theme shadow-sm">
                   <h3 className="text-md font-semibold mb-3 text-[color:var(--color-text)]">Achievements</h3>
-                  {job.achievements && job.achievements.length > 0 ? (
-                    <ul className="list-disc list-inside space-y-2 text-[color:var(--color-text)]">
-                      {job.achievements.map((a, i) => (
-                        <li key={i}>{a}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-sm text-[color:var(--color-text-muted)]">No achievements listed.</p>
-                  )}
+                  {renderListItems(job.achievements)}
                 </section>
               </div>
             </div>
