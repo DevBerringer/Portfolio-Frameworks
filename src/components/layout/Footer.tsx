@@ -1,6 +1,7 @@
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FiGithub, FiLinkedin, FiTwitter, FiMail } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { socialLinks } from '../../data/portfolio';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 
 const iconMap: Record<string, React.ReactElement> = {
   github: <FiGithub size={20} />,
@@ -11,42 +12,7 @@ const iconMap: Record<string, React.ReactElement> = {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const scrollToSection = (href: string) => {
-    // If not on home page, navigate to home first
-    if (location.pathname !== '/') {
-      navigate('/');
-      // Wait for navigation to complete, then scroll
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          const navHeight = 100;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-          window.scrollTo({
-            top: Math.max(0, offsetPosition),
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
-      return;
-    }
-
-    const element = document.querySelector(href);
-    if (element) {
-      // Calculate offset for fixed navigation bar (approximately 80-100px)
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-      window.scrollTo({
-        top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
-        behavior: 'smooth'
-      });
-    }
-  };
+  const scrollToSection = useScrollToSection();
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
@@ -112,9 +78,6 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-600 text-sm mb-4 md:mb-0">
               © {currentYear} Portfolio. All rights reserved.
-            </p>
-            <p className="text-gray-600 text-sm flex items-center">
-              Made with <FiHeart className="mx-1 text-red-500" size={16} /> and React
             </p>
           </div>
         </div>
