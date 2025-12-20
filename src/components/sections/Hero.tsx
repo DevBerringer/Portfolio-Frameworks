@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
-import AnimatedBlobBackground from '../ui/AnimatedBlobBackground';
+import MeshGradientBackground from '../ui/MeshGradientBackground';
 
 const iconMap: Record<string, React.ReactElement> = {
   github: <FiGithub size={24} />,
@@ -22,9 +22,9 @@ export default function Hero() {
   const animationDuration = isMobile ? 0.3 : 0.5;
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50">
-      {/* Animated Background Elements */}
-      <AnimatedBlobBackground intensity="high" />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-50">
+      {/* Mesh Gradient Background */}
+      <MeshGradientBackground />
 
       {/* Fade-out gradient at bottom for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10" />
@@ -120,4 +120,3 @@ export default function Hero() {
     </section>
   );
 }
-
