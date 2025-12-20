@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiCoffee, FiCode, FiMapPin } from 'react-icons/fi';
+import { FiActivity, FiShield ,FiCpu, FiCode, FiMapPin } from 'react-icons/fi';
 import { personalInfo, skills } from '../../data/portfolio';
 
 export default function About() {
@@ -15,7 +15,9 @@ export default function About() {
 
   const stats = [
     { icon: <FiCode />, label: 'Years Experience', value: '5+' },
-    { icon: <FiCoffee />, label: 'Cups of Coffee', value: '∞' },
+    { icon: <FiCpu />, label: 'Event Processing', value: 'Real-time' },
+    { icon: <FiShield />, label: 'Test Coverage', value: '90%+' },
+    { icon: <FiActivity />, label: 'System Uptime', value: '99.9%' },
   ];
 
   return (
@@ -65,6 +67,25 @@ export default function About() {
                 <span className="text-gray-700">{personalInfo.availability}</span>
               </div>
             </div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-4 w-fit"
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -5 }}
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl glass aspect-square w-40 md:w-48"           
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl font-bold text-gray-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-600">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Skills */}
@@ -98,31 +119,6 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-2 gap-4 w-fit"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -5 }}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl glass aspect-square w-40 md:w-48"           
-            >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl">
-                {stat.icon}
-              </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">
-                {stat.value}
-              </div>
-              <div className="text-gray-600">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

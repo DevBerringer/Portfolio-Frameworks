@@ -32,9 +32,6 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
 
         <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300">
-              Case Study
-            </p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl xl:text-6xl">
               {project.title}
             </h1>

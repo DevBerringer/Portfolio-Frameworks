@@ -81,20 +81,33 @@ export const projects: Project[] = [
   {
     id: '4',
     title: 'StackDev',
-    description: 'Adaptive, AI‑powered coding professors that teach developers through evolving, lesson‑based onboarding and hands‑on guidance. Includes retraining pipelines, subscription flows, and multi‑persona professor architecture.',
-    detailedDescription: 'StackDev is an innovative AI-powered learning platform designed to teach developers through personalized, adaptive lessons. The system features multiple AI professor personas, each specializing in different technologies. It includes subscription management, progress tracking, and retraining pipelines to keep the AI models up-to-date with the latest technologies.',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop',
-    tags: ['React', 'Firebase', 'AI Agents'],
+    description: 'A scalable full-stack learning platform with Kotlin Quarkus backend, GraphQL/gRPC endpoints, Python RAG microservice, and React/Vite TS frontend with Firebase.',
+    detailedDescription: 'Designed and deployed a scalable, full-stack learning platform using a Kotlin Quarkus backend with graphQL and gRPC endpoints. The system integrates a python microservice to handle Vector Database for Retrieval-Augmented Generation (RAG) and uses React/Vite TS with Firebase for secure connections and Firestore real-time persistence. The platform offers free and paid tiers with payments handled through Stripe and PayPal. To optimize performance, it employs a normalized AI questions cache to efficiently handle similar queries.',
+    image: '/StackedDev.png',
+    tags: ['Kotlin', 'Quarkus', 'GraphQL', 'gRPC', 'Python', 'Vector Database', 'RAG', 'React', 'Vite', 'TypeScript', 'Firebase', 'Firestore'],
     technologies: [
-      { name: 'React', description: 'Frontend library for building the user interface' },
-      { name: 'Firebase', description: 'Backend-as-a-Service for authentication and database' },
-      { name: 'AI Agents', description: 'Custom AI models for personalized learning' }
+      { name: 'Kotlin Quarkus', description: 'Programming language for backend development' },
+      { name: 'GraphQL gRPC', description: 'Query language for APIs and High-performance RPC framework' },
+      { name: 'Python', description: 'Language for the RAG microservice' },
+      { name: 'Vector Database', description: 'Database for storing and retrieving vector embeddings' },
+      { name: 'RAG', description: 'Retrieval-Augmented Generation for AI-powered responses' },
+      { name: 'React TS Vite', description: 'Frontend library for building the user interface' },
+      { name: 'Firebase', description: 'Platform for secure connections and authentication' },
+      { name: 'Firestore', description: 'Real-time NoSQL database' }
     ],
-    features: ['AI-powered professors', 'Adaptive learning paths', 'Subscription management', 'Progress tracking', 'Multi-persona architecture'],
+    features: ['Scalable full-stack architecture', 'GraphQL and gRPC endpoints', 'Python microservice for RAG', 'Vector database integration', 'Secure Firebase connections', 'Real-time Firestore persistence', 'Free and paid subscription tiers', 'Stripe and PayPal payment integration', 'Normalized AI questions cache for query optimization'],
     challenges: [
       {
-        challenge: 'Developing accurate AI models for code teaching and managing multiple AI personas with consistent behavior',
-        solution: 'Created specialized training datasets for each technology stack and implemented persona consistency checks with reinforcement learning techniques'
+        challenge: 'Integrating a Kotlin Quarkus backend with a Python microservice for RAG functionality',
+        solution: 'Implemented efficient inter-service communication using gRPC and ensured data consistency across services'
+      },
+      {
+        challenge: 'Handling vector database operations for Retrieval-Augmented Generation',
+        solution: 'Utilized optimized indexing and querying techniques to manage large-scale vector embeddings efficiently'
+      },
+      {
+        challenge: 'Ensuring real-time persistence and secure connections with Firebase and Firestore',
+        solution: 'Configured Firebase authentication and Firestore listeners for seamless real-time updates and data security'
       }
     ],
     demoUrl: undefined,
@@ -110,21 +123,27 @@ export const skills: Skill[] = [
   { name: 'Java', category: 'backend' },
   { name: 'Spring boot', category: 'backend' },
   { name: 'Quarkus', category: 'backend' },
+  { name: 'Pulsar', category: 'backend' },
+  { name: 'Kafka', category: 'backend' },
   { name: 'C# .NET', category: 'backend' },
+  { name: 'Python', category: 'backend' },
   { name: 'PostgreSQL', category: 'backend' },
-  { name: 'MS SQL', category: 'backend' },
+  { name: 'Vector DB', category: 'backend' },
   { name: 'MongoDB', category: 'backend' },
+  { name: 'FireStore', category: 'backend' },
   { name: 'Git', category: 'cloud tools' },
+  { name: 'GitHub Actions', category: 'cloud tools' },
+  { name: 'Azure Pipelines', category: 'cloud tools' },
   { name: 'Docker', category: 'cloud tools' },
-  { name: 'AWS Lambda', category: 'cloud tools' },
   { name: 'Kubernetes', category: 'cloud tools' },
-  { name: 'PCF', category: 'cloud tools' },
+  { name: 'AWS Lambda', category: 'cloud tools' },
+  { name: 'FireBase', category: 'cloud tools' },
+  { name: 'Pivotal Cloud Foundry', category: 'cloud tools' },
   { name: 'Ampcode', category: 'AI' },
   { name: 'Anthropic Claude', category: 'AI' },
   { name: 'Cursor', category: 'AI' },
   { name: 'LangChain', category: 'AI' },
   { name: 'OpenAI API', category: 'AI' },
-  { name: 'NLP', category: 'AI' },
   { name: 'Figma', category: 'design' },
   { name: 'Lucidchart', category: 'design' },
   { name: 'Microsoft Visio', category: 'design' },
@@ -138,14 +157,17 @@ export const socialLinks: SocialLink[] = [
 export const personalInfo = {
   name: 'Blake Berringer',
   title: 'Full Stack Developer',
-  tagline: 'Building exceptional digital experiences',
-  about: `I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies like React and Vite, I transform ideas into elegant, scalable solutions.
+  tagline: 'Transforming complex requirements into elegant, scalable code.',
+  about: `I build software that scales. From designing event-driven architectures at GM that boosted performance by 2,000%, to crafting fluid interfaces with React and Vite, I love the challenge of making "complex" feel "simple."
 
-  Professionally, I've contributed to impactful systems at GM, including designing a Pulsar-based event router in Java and Quarkus that increased throughput by over 100% and standardized multi-API orchestration. My work spans fault-tolerant architecture, maintainable codebases, and developer experience improvements, from onboarding flows to automated testing and TDD.
-  
-  When I'm not coding, you'll find me exploring new technologies or sharing knowledge with the developer community. I thrive on refining systems, dissecting complex stacks, and building tools that make engineering more intuitive and efficient.`,
+  I specialize in:
+  • High-throughput backend systems (Java, Quarkus, Pulsar)
+  • Modern frontend ecosystems (React, TypeScript, Vite)
+  • Engineering excellence (TDD, automated testing, fault-tolerant design)
+
+  I’m an advocate for clean code and better developer experiences. If I'm not in my IDE, I'm likely exploring new ways to automate the boring parts of engineering so we can focus on building what matters.`,
   email: 'Blake.Berringer.Work@gmail.com',
   location: 'Austin, TX',
-  availability: 'Available for Fullstack and Backend Roles',
+  availability: 'Available for Full Stack & Backend roles',
 };
 

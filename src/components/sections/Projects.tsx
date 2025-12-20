@@ -327,19 +327,14 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
           transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
           className="flex gap-4 pt-4 border-b mb-12 border-gray-200 min-h-[48px] items-center"
         >
-          {project.demoUrl && (
-            <motion.a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
-            >
-              <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
-              <span>Live Demo</span>
-              <span className="text-gray-400">→</span>
-            </motion.a>
-          )}
+          <Link
+            to={`/project/${project.id}`}
+            className="flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+          >
+            <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+            <span>View Details</span>
+            <span className="text-gray-400">→</span>
+          </Link>
           {!project.demoUrl && !project.githubUrl && (
             <span className="flex items-center gap-2 text-gray-400 font-medium">
               <FiLock size={18} />
