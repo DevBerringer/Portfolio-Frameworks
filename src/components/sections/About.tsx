@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiAward, FiCoffee, FiCode, FiMapPin } from 'react-icons/fi';
+import { FiCoffee, FiCode, FiMapPin } from 'react-icons/fi';
 import { personalInfo, skills } from '../../data/portfolio';
 
 export default function About() {
