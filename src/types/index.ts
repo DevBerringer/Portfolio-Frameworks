@@ -1,3 +1,8 @@
+export interface Challenge {
+  challenge: string;
+  solution: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -8,7 +13,7 @@ export interface Project {
   tags: string[];
   technologies?: { name: string; description: string }[];
   features?: string[];
-  challenges?: string;
+  challenges?: Challenge[];
   date?: string;
   demoUrl?: string;
   githubUrl?: string;

@@ -47,7 +47,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-10 bg-gray-50 overflow-hidden scroll-mt-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,11 +55,11 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
             Featured <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Here is some of my recent work. Each project represents a unique challenge
+          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
+            Here is some of my work. Each project represents a unique challenge
             and showcases different aspects of my skillset.
           </p>
         </motion.div>
@@ -204,29 +204,13 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
       {/* Content */}
       <div className="relative h-full flex flex-col justify-end p-6 md:p-8">
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-4xl font-bold text-white mb-3">
+          <h3 className="text-2xl md:text-4xl font-bold text-white mb-8">
             {project.title}
           </h3>
 
-          {/* Description */}
-          <p className="text-gray-200 text-sm md:text-base mb-6 line-clamp-2">
-            {project.description}
-          </p>
-
-          {/* Action Buttons */}
+          {/* Action Button */}
           <div className="flex gap-3">
             <div className="flex gap-3">
               <Link
@@ -237,27 +221,6 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
                 <FiExternalLink className="mr-2" size={18} />
                 View More
               </Link>
-              {project.githubUrl ? (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium hover:bg-white/30 transition-colors border border-white/30"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FiGithub className="mr-2" size={18} />
-                  Code
-                </a>
-              ) : (
-                <button
-                  disabled
-                  className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium cursor-not-allowed opacity-70 border border-white/30"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FiLock className="mr-2" size={18} />
-                  Private Repository
-                </button>
-              )}
             </div>
           </div>
         </div>
@@ -374,19 +337,6 @@ function MobileProjectLayout({ project, index, total }: { project: Project; inde
             >
               <FiExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
               <span>Live Demo</span>
-              <span className="text-gray-400">→</span>
-            </motion.a>
-          )}
-          {project.githubUrl && (
-            <motion.a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 text-gray-700 font-semibold hover:text-gray-900 transition-colors group"
-            >
-              <FiGithub size={18} className="group-hover:rotate-12 transition-transform" />
-              <span>Source Code</span>
               <span className="text-gray-400">→</span>
             </motion.a>
           )}

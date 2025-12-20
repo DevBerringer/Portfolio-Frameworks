@@ -16,7 +16,6 @@ export default function About() {
   const stats = [
     { icon: <FiCode />, label: 'Years Experience', value: '5+' },
     { icon: <FiCoffee />, label: 'Cups of Coffee', value: '∞' },
-    { icon: <FiAward />, label: 'Professional Projects Completed', value: '10+' },
   ];
 
   return (
@@ -24,7 +23,7 @@ export default function About() {
       {/* Fade-in gradient at top for smooth transition from Hero */}
       <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,10 +31,10 @@ export default function About() {
           transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4">
             About <span className="text-gradient">Me</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 xl:text-lg max-w-2xl mx-auto">
             Get to know me better
           </p>
         </motion.div>
@@ -50,7 +49,7 @@ export default function About() {
           >
             <div className="prose prose-lg">
               {personalInfo.about.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-gray-600 mb-4">
+                <p key={index} className="text-gray-600 mb-4 xl:text-lg">
                   {paragraph}
                 </p>
               ))}
@@ -75,7 +74,7 @@ export default function About() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.3 }}
           >
-            <h3 className="text-2xl font-bold mb-6">Skills & Technologies</h3>
+            <h3 className="text-2xl xl:text-3xl font-bold mb-6">Skills & Technologies</h3>
             
             <div className="space-y-6">
               {Object.entries(skillCategories).map(([category, categorySkills]) => (
@@ -106,13 +105,13 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-2 md:grid-cols-2 gap-4 w-fit"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               whileHover={{ y: -5 }}
-              className="text-center p-8 rounded-2xl glass"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl glass aspect-square w-40 md:w-48"           
             >
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4 text-2xl">
                 {stat.icon}

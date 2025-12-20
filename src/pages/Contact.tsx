@@ -97,7 +97,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold mb-6">Let's talk about everything!</h3>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 mb-8 xl:text-lg">
               Don't hesitate to reach out if you have any questions or just want to connect.
               I'm always open to discussing new projects, creative ideas, or opportunities.
             </p>
@@ -151,7 +151,7 @@ export default function Contact() {
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-gray-600">{info.value}</p>
+                      <p className="text-gray-600 xl:text-lg">{info.value}</p>
                     )}
                   </div>
                 </motion.div>

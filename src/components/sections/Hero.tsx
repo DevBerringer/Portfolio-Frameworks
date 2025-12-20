@@ -47,9 +47,6 @@ export default function Hero() {
             transition={{ duration: animationDuration }}
             className="mb-6"
           >
-            <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
-              👋 Welcome to my portfolio
-            </span>
           </motion.div>
 
           {/* Subtitle */}
@@ -66,7 +63,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: animationDuration, delay: animationDelay * 3 }}
-            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto"
+            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto xl:text-xl"
           >
             {personalInfo.tagline}
           </motion.p>
