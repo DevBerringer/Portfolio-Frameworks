@@ -44,7 +44,7 @@ export default async function handler(
     
 
     // Send email using Resend
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: `Portfolio Contact <${process.env.RESEND_FROM_EMAIL}>`,
       to: process.env.CONTACT_RECEIVER_EMAIL,
       replyTo: email,
@@ -74,10 +74,11 @@ export default async function handler(
     });
 
     if (error) {
-      console.error('Resend error:', error);
-      return res.status(500).json({ error: 'Failed to send email' });
+      console.error('Resend error details:', error);
+      return res.status(500).json({ error: 'Failed to send email', details: error.message });
     }
 
+    console.log('Email sent successfully:', data);
     return res.status(200).json({ success: true, message: 'Email sent successfully' });
   } catch (error) {
     console.error('Contact form error:', error);

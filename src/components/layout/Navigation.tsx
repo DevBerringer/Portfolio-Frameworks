@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const navItems = [
@@ -11,6 +12,8 @@ const navItems = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +25,26 @@ export default function Navigation() {
   }, []);
 
   const scrollToSection = (href: string) => {
+    // If not on home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const navHeight = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+      setIsOpen(false);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       // Calculate offset for fixed navigation bar (approximately 80-100px)
@@ -55,43 +78,38 @@ export default function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a
-            href="#home"
+          <motion.div
             className="text-2xl font-bold text-gradient cursor-pointer"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#home');
-            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Portfolio
-          </motion.a>
+            <Link to="/" onClick={() => scrollToSection('#home')}>
+              Portfolio
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <motion.a
+              <motion.div
                 key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
                 className="text-gray-700 hover:text-primary-600 transition-colors font-medium cursor-pointer"
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
-                {item.label}
-              </motion.a>
+                <Link to="/" onClick={() => scrollToSection(item.href)}>
+                  {item.label}
+                </Link>
+              </motion.div>
             ))}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors"
-              onClick={() => scrollToSection('#contact')}
             >
-              Let's Talk
+              <Link to="/contact" className="block w-full h-full">
+                Let's Talk
+              </Link>
             </motion.button>
           </div>
 
@@ -116,23 +134,21 @@ export default function Navigation() {
         >
           <div className="pt-4 pb-2 space-y-3">
             {navItems.map((item) => (
-              <a
+              <div
                 key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
                 className="block text-gray-700 hover:text-primary-600 transition-colors font-medium py-2 cursor-pointer"
               >
-                {item.label}
-              </a>
+                <Link to="/" onClick={() => scrollToSection(item.href)}>
+                  {item.label}
+                </Link>
+              </div>
             ))}
             <button
               className="w-full bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors mt-2"
-              onClick={() => scrollToSection('#contact')}
             >
-              Let's Talk
+              <Link to="/contact" className="block w-full h-full">
+                Let's Talk
+              </Link>
             </button>
           </div>
         </motion.div>

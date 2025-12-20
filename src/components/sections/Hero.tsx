@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
 import AnimatedBlobBackground from '../ui/AnimatedBlobBackground';
@@ -28,7 +29,7 @@ export default function Hero() {
       {/* Fade-out gradient at bottom for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
           <motion.h1
@@ -85,14 +86,15 @@ export default function Hero() {
             >
               View My Work
             </motion.button>
-            <motion.a
-              href="#contact"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-medium hover:border-primary-600 hover:text-primary-600 transition-colors"
             >
-              Get In Touch
-            </motion.a>
+              <Link to="/contact" className="block w-full h-full">
+                Get In Touch
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Social Links */}

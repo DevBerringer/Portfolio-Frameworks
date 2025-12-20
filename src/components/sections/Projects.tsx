@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
 import { projects } from '../../data/portfolio';
 import type { Project } from '../../types';
@@ -227,43 +228,37 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
 
           {/* Action Buttons */}
           <div className="flex gap-3">
-            {!project.demoUrl && !project.githubUrl ? (
-              <button
-                disabled
-                className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium cursor-not-allowed opacity-70 border border-white/30"
+            <div className="flex gap-3">
+              <Link
+                to={`/project/${project.id}`}
+                className="inline-flex items-center px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <FiLock className="mr-2" size={18} />
-                Private Repository
-              </button>
-            ) : (
-              <>
-                {project.demoUrl && (
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FiExternalLink className="mr-2" size={18} />
-                    View Demo
-                  </a>
-                )}
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium hover:bg-white/30 transition-colors border border-white/30"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FiGithub className="mr-2" size={18} />
-                    Code
-                  </a>
-                )}
-              </>
-            )}
+                <FiExternalLink className="mr-2" size={18} />
+                View More
+              </Link>
+              {project.githubUrl ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium hover:bg-white/30 transition-colors border border-white/30"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FiGithub className="mr-2" size={18} />
+                  Code
+                </a>
+              ) : (
+                <button
+                  disabled
+                  className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-medium cursor-not-allowed opacity-70 border border-white/30"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FiLock className="mr-2" size={18} />
+                  Private Repository
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

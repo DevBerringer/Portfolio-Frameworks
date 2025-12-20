@@ -1,4 +1,5 @@
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { socialLinks } from '../../data/portfolio';
 
 const iconMap: Record<string, React.ReactElement> = {
@@ -10,6 +11,42 @@ const iconMap: Record<string, React.ReactElement> = {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToSection = (href: string) => {
+    // If not on home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const navHeight = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+      return;
+    }
+
+    const element = document.querySelector(href);
+    if (element) {
+      // Calculate offset for fixed navigation bar (approximately 80-100px)
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative position
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
@@ -28,24 +65,24 @@ export default function Footer() {
             <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#home')} className="text-gray-600 hover:text-primary-600 transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#about')} className="text-gray-600 hover:text-primary-600 transition-colors">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/" onClick={() => scrollToSection('#projects')} className="text-gray-600 hover:text-primary-600 transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors">
+                <Link to="/contact" className="text-gray-600 hover:text-primary-600 transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

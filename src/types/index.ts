@@ -2,8 +2,14 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  detailedDescription?: string;
   image: string;
+  screenshots?: string[];
   tags: string[];
+  technologies?: { name: string; description: string }[];
+  features?: string[];
+  challenges?: string;
+  date?: string;
   demoUrl?: string;
   githubUrl?: string;
 }
