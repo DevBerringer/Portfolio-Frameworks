@@ -5,6 +5,19 @@ import { personalInfo, skills } from '../../data/portfolio';
 export default function About() {
   const category = 'cloud tools';
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0 },
+  } as const;
+
+  const stagger = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  } as const;
+
   const skillCategories = {
     frontend: skills.filter((s) => s.category === 'frontend'),
     backend: skills.filter((s) => s.category === 'backend'),
@@ -27,10 +40,11 @@ export default function About() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
+          variants={fadeUp}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
@@ -44,10 +58,11 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* About Text */}
           <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.45 }}
+            variants={fadeUp}
           >
             <div className="prose prose-lg">
               {personalInfo.about.split('\n').map((paragraph, index) => (
@@ -68,11 +83,17 @@ export default function About() {
               </div>
             </div>
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={stagger}
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
+                  variants={fadeUp}
                   whileHover={{ y: -5 }}
                   className="flex flex-col items-center justify-center p-4 rounded-2xl glass aspect-square w-36 md:w-40 mx-2"
                 >
@@ -91,15 +112,16 @@ export default function About() {
                   <div className="text-gray-600 dark:text-gray-400 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Skills */}
           <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.45 }}
+            variants={fadeUp}
           >
             <h3 className="text-2xl xl:text-3xl font-bold mb-6 dark:text-white">Skills & Technologies</h3>
             

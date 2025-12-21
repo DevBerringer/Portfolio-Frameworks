@@ -1,6 +1,6 @@
 import type { Project, Skill, SocialLink } from '../types';
 import gmLogo from '../assets/logos/gm.jpg';
-import aztecLogo from '../assets/logos/aztec.svg';
+import aztecLogo from '../assets/logos/aztec.png';
 import cozyCookbookImg from '../assets/cozy-cookbook.png';
 import portfolioImg from '../assets/Portfolio.png';
 import analyticsImg from '../assets/AnalyticsDashboard.png';

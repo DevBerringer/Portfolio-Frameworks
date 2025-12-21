@@ -42,18 +42,19 @@ export default function WorkDetail() {
                   <div className="w-24 h-24 flex items-center justify-center rounded-md bg-surface-muted border border-theme text-xl font-semibold text-[color:var(--color-text)]">{job.company.split(' ').map((w) => w[0]).slice(0,2).join('')}</div>
                 )}
                 <div>
-                  <h1 className="text-xl font-bold text-[color:var(--color-text)]">{job.title}</h1>
+                  <h1 className="text-xl font-bold text-(--color-text)">{job.title}</h1>
                   <a
                     href={job.companyUrl || '#'}
                     target={job.companyUrl ? '_blank' : undefined}
                     rel={job.companyUrl ? 'noreferrer' : undefined}
-                    className="text-sm text-[color:var(--color-text-muted)] hover:underline"
+                    className="text-sm text-(--color-text-muted) hover:underline"
                   >
                     {job.company}
                   </a>
-                  <div className="mt-2 text-xs text-[color:var(--color-text-muted)]">
+                  <div className="mt-2 text-xs text-(--color-text-muted)">
                     <div>{job.location}</div>
-                    <div className="mt-1">{job.start} — {job.end} {job.employmentType && (<span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted border border-theme rounded">{job.employmentType}</span>)}</div>
+                    <div className="mt-1">{job.start} — {job.end} {job.employmentType && (<span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted border border-theme rounded">{job.employmentType}</span>)}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiExternalLink, FiGithub, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { projects } from '../../data/portfolio';
 import type { Project } from '../../types';
 
@@ -66,6 +66,24 @@ export default function Projects() {
 
         {/* Desktop Carousel - Hidden on mobile */}
         <div className="hidden md:block relative w-full mx-auto mb-12 overflow-hidden">
+          {/* Arrow controls overlaying previews at center */}
+          <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 cursor-pointer pointer-events-none z-30 flex items-center justify-between px-[10%]">
+            <button
+              aria-label="Previous project"
+              onClick={goToPrevious}
+              className="pointer-events-auto inline-flex items-center justify-center w-10 h-10 text-white drop-shadow-lg hover:scale-110 transition"
+            >
+              <FiChevronLeft size={24} />
+            </button>
+            <button
+              aria-label="Next project"
+              onClick={goToNext}
+              className="pointer-events-auto cursor-pointer inline-flex items-center justify-center w-10 h-10 text-white drop-shadow-lg hover:scale-110 transition"
+            >
+              <FiChevronRight size={24} />
+            </button>
+          </div>
+
           <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
             {/* Previous Card (Left) */}
             <AnimatePresence initial={false}>
@@ -76,7 +94,7 @@ export default function Projects() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 onClick={goToPrevious}
-                className="absolute left-0 md:left-0 w-[35%] md:w-[50%] h-[350px] md:h-[450px] z-10 cursor-pointer"
+                className="absolute left-0 md:left-0 w-[35%] md:w-[50%] h-87.5 md:h-112.5 z-10 cursor-pointer"
                 style={{
                   filter: 'blur(4px) grayscale(60%)',
                   transform: 'scale(0.75) translateX(-10%)',
@@ -109,7 +127,7 @@ export default function Projects() {
                   x: '-50%',
                   y: '-50%',
                 }}
-                className={`absolute z-20 w-[90%] md:w-[66.666%] h-[400px] md:h-[500px] touch-pan-y ${
+                className={`absolute z-20 w-[90%] md:w-[66.666%] h-100 md:h-125 touch-pan-y ${
                   isTouchDevice ? 'cursor-grab active:cursor-grabbing' : ''
                 }`}
               >
@@ -126,7 +144,7 @@ export default function Projects() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 onClick={goToNext}
-                className="absolute right-0 md:right-0 w-[35%] md:w-[50%] h-[350px] md:h-[450px] z-10 cursor-pointer"
+                className="absolute right-0 md:right-0 w-[35%] md:w-[50%] h-87.5 md:h-112.5 z-10 cursor-pointer"
                 style={{
                   filter: 'blur(4px) grayscale(60%)',
                   transform: 'scale(0.75) translateX(10%)',
@@ -198,7 +216,7 @@ function ProjectCard({ project, isActive }: { project: Project; isActive: boolea
           alt={project.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
       </div>
 
       {/* Content */}
