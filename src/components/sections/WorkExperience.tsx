@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { workExperience } from '../../data/portfolio';
+import CompanyAvatar from '../ui/CompanyAvatar';
 
 const MotionLink = motion(Link);
 
@@ -50,19 +51,24 @@ export default function WorkExperienceSection() {
               whileHover={{ y: -6, scale: 1.02 }}
               className="bg-surface border border-theme p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm"
             >
-              {job.logo ? (
-                <img src={job.logo} alt={job.company} className="w-20 h-20 object-contain mb-4" />
-              ) : (
-                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-surface-muted text-gray-800 dark:text-gray-200 mb-4 font-semibold text-lg">
-                  {job.company.split(' ').map((w) => w[0]).slice(0, 2).join('')}
-                </div>
-              )}
-              <div className="text-base font-semibold text-center dark:text-white">{job.company}
-                <div className="text-sm text-gray-600 dark:text-gray-400 text-center">{job.title}
-                </div>
-              </div>
-              <div className="mt-2 text-xs text-(--color-text-muted)">
-                <div className="mt-1">{job.start} — {job.end} {job.employmentType && (<span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted border border-theme rounded">{job.employmentType}</span>)}
+              <CompanyAvatar
+                name={job.company}
+                logo={job.logo}
+                size="md"
+                shape="circle"
+                className="mb-4"
+                fallbackClassName="bg-surface-muted text-gray-800 dark:text-gray-200 font-semibold text-lg"
+              />
+              <div className="text-base font-semibold text-center dark:text-white">{job.company}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 text-center">{job.title}</div>
+              <div className="mt-2 text-xs text-gray-600 dark:text-gray-400 text-center">
+                <div className="mt-1">
+                  {job.start} — {job.end ?? 'Present'}{' '}
+                  {job.employmentType && (
+                    <span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted border border-theme rounded">
+                      {job.employmentType}
+                    </span>
+                  )}
                 </div>
               </div>
             </MotionLink>
