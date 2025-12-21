@@ -66,15 +66,8 @@ export default function WorkDetail() {
                 <div>
                   <h1 className="text-xl font-bold text-(--color-text)">{job.title}</h1>
                   <a
-<<<<<<< HEAD
-                    href={job.companyUrl || '#'}
-                    target={job.companyUrl ? '_blank' : undefined}
-                    rel={job.companyUrl ? 'noreferrer' : undefined}
-                    className="text-sm text-(--color-text-muted) hover:underline"
-=======
                     {...getCompanyLinkProps(job.companyUrl)}
                     className="text-sm text-[color:var(--color-text-muted)] hover:underline"
->>>>>>> 305b2eb79efd39a6863fb0f6daa00f35d39b8ed3
                   >
                     {job.company}
                   </a>
