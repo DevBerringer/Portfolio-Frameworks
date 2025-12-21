@@ -55,7 +55,7 @@ export default function WorkExperienceSection() {
                 name={job.company}
                 logo={job.logo}
                 size="md"
-                shape="circle"
+                shape="rounded"
                 className="mb-4"
                 fallbackClassName="bg-surface-muted text-gray-800 dark:text-gray-200 font-semibold text-lg"
               />
