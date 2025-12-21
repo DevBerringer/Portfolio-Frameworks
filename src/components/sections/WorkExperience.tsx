@@ -48,7 +48,7 @@ export default function WorkExperienceSection() {
               key={job.id}
               to={`/work/${job.id}`}
               variants={fadeUp}
-              whileHover={{ y: -6, scale: 1.02 }}
+              whileHover={{ y: -1, scale: 1.02 }}
               className="bg-surface border border-theme p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm"
             >
               <CompanyAvatar
