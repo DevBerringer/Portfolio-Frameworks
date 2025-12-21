@@ -8,10 +8,13 @@ import {
   ProjectFeatures,
   ProjectChallenges,
 } from '../components/projects';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const project = projects.find(p => p.id === id);
+  const scrollToSection = useScrollToSection();
 
   if (!project) {
     return <ProjectNotFound />;
@@ -19,6 +22,16 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-app pb-16">
+      <div className="mx-auto max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] px-8 sm:px-12 lg:px-16 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: 'Home', to: '/', onClick: () => scrollToSection('#home') },
+            { label: 'Projects', to: '/', onClick: () => scrollToSection('#projects') },
+            { label: project.title, current: true },
+          ]}
+          className='mb-2'
+        />
+      </div>
       <ProjectHero project={project} />
 
       <div className="mx-auto mt-12 flex max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] flex-col gap-12 px-8 sm:px-12 lg:px-16">

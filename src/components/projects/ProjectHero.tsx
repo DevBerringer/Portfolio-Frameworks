@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
-import { useScrollToSection } from '../../hooks/useScrollToSection';
 import ProjectImage from './ProjectImage';
 import type { Project } from '../../types';
 
@@ -9,30 +7,13 @@ interface ProjectHeroProps {
 }
 
 export default function ProjectHero({ project }: ProjectHeroProps) {
-  const scrollToSection = useScrollToSection();
-
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[color:var(--color-app-bg)] via-[color:var(--color-surface-muted)] to-[color:var(--color-primary-soft)] text-[color:var(--color-text)]">
+    <section className="relative overflow-hidden bg-linear-to-br from-(--color-app-bg) via-(--color-surface-muted) to-(--color-primary-soft) text-(--color-text)">
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute -top-24 -right-10 h-64 w-64 rounded-full bg-[color:color-mix(in_srgb,var(--color-primary)_65%,transparent)] blur-3xl" />
-        <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color:color-mix(in_srgb,var(--color-accent)_65%,transparent)] blur-3xl" />
+        <div className="absolute -top-24 -right-10 h-64 w-64 rounded-full bg-[color-mix(in_srgb,var(--color-primary)_65%,transparent)] blur-3xl" />
+        <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color-mix(in_srgb,var(--color-accent)_65%,transparent)] blur-3xl" />
       </div>
       <div className="relative mx-auto max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] pb-12 pt-10 px-8 sm:px-12 lg:px-16 xl:px-20 2xl:px-24">
-        <nav className="flex items-center gap-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-          <Link
-            to="/"
-            onClick={() => scrollToSection('#projects')}
-            className="transition"
-            style={{ color: 'var(--color-text-muted)' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-text)')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-muted)')}
-          >
-            Projects
-          </Link>
-          <span>/</span>
-          <span style={{ color: 'var(--color-text)' }}>{project.title}</span>
-        </nav>
-
         <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
           <div>
             <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl xl:text-6xl" style={{ color: 'var(--color-text)' }}>

@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { workExperience } from '../data/portfolio';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 import CompanyAvatar from '../components/ui/CompanyAvatar';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 
 const getCompanyLinkProps = (companyUrl?: string) =>
   companyUrl
@@ -48,9 +49,14 @@ export default function WorkDetail() {
   return (
     <div className="min-h-screen bg-app py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto relative">
-        <div className="absolute left-0 -top-10 md:-top-6">
-          <Link to="/" onClick={() => scrollToSection('#work')} className="text-primary-600 hover:underline">← Back</Link>
-        </div>
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { label: 'Home', to: '/', onClick: () => scrollToSection('#home') },
+            { label: 'Work', to: '/', onClick: () => scrollToSection('#work') },
+            { label: job.company, current: true },
+          ]}
+        />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-8">
           <aside className="md:col-span-1">
             <div className="sticky top-24">
