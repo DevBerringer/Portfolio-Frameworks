@@ -135,7 +135,7 @@ export default function AnimatedBlobBackground({
   const opacityMultiplier = intensity === 'low' ? 0.6 : intensity === 'medium' ? 0.8 : 1;
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`absolute min-h-svh inset-0 overflow-hidden pointer-events-none ${className}`}>
       {blobsToRender.map((blob, index) => {
         // Adjust opacity in className if intensity is not high
         const adjustedClassName = intensity !== 'high' && blob.className.includes('opacity-')

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX, FiSun, FiMoon, FiFeather, FiDroplet, FiChevronDown } from 'react-icons/fi';
@@ -53,9 +53,30 @@ const themeCards = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(() => (typeof window !== 'undefined' ? window.scrollY > 50 : false));
   const scrollToSection = useScrollToSection();
   const { theme, setTheme } = useTheme();
+  const themeDropdownRef = useRef<HTMLDivElement | null>(null);
+  const themeCloseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearThemeCloseTimer = useCallback(() => {
+    if (themeCloseTimeout.current) {
+      clearTimeout(themeCloseTimeout.current);
+      themeCloseTimeout.current = null;
+    }
+  }, []);
+
+  const scheduleThemeClose = useCallback(() => {
+    if (!isThemeOpen) {
+      return;
+    }
+
+    clearThemeCloseTimer();
+    themeCloseTimeout.current = window.setTimeout(() => {
+      setIsThemeOpen(false);
+      themeCloseTimeout.current = null;
+    }, 500);
+  }, [clearThemeCloseTimer, isThemeOpen]);
 
   const hasBg = scrolled || isOpen;
   const navBgStyle = {
@@ -74,21 +95,44 @@ export default function Navigation() {
       setScrolled(window.scrollY > 50);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isThemeOpen) {
+      clearThemeCloseTimer();
+      return undefined;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(event.target as Node)) {
+        setIsThemeOpen(false);
+        clearThemeCloseTimer();
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+      clearThemeCloseTimer();
+    };
+  }, [isThemeOpen, clearThemeCloseTimer]);
+
+  useEffect(() => () => clearThemeCloseTimer(), [clearThemeCloseTimer]);
+
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={scrolled ? { y: 0 } : { y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 py-4 md:py-6 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 pt-2 md:pt-4 ${
         hasBg ? 'shadow-lg' : ''
       }`}
       style={navBgStyle}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
           <motion.div
             className="text-2xl font-bold text-gradient cursor-pointer"
@@ -101,49 +145,53 @@ export default function Navigation() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center h-full divide-x divide-gray-200/60 dark:divide-gray-700/60">
             {navItems.map((item) => (
               <motion.div
                 key={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium cursor-pointer"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
+                className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-900/10"
+                whileHover={{}}
+                whileTap={{}}
               >
-                <Link to="/" onClick={() => scrollToSection(item.href)}>
+                <Link to="/" onClick={() => scrollToSection(item.href)} className="block px-2 py-1">
                   {item.label}
                 </Link>
               </motion.div>
             ))}
 
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-full transition-colors"
+            <motion.div
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-900/10"
+              whileHover={{}}
+              whileTap={{}}
             >
-              <Link to="/contact" className="block w-full h-full">
-                Let's Talk
-              </Link>
-            </motion.button>
+              <Link to="/contact" className="block px-2 py-1">Let's Talk</Link>
+            </motion.div>
 
             <div
-              className="relative hidden md:block ml-2"
-              onMouseEnter={() => setIsThemeOpen(true)}
-              onMouseLeave={() => setIsThemeOpen(false)}
-              style={{ minWidth: 90 }}
+              ref={themeDropdownRef}
+              className="relative hidden md:block ml-4 h-full"
+              style={{ minWidth: 110 }}
+              onMouseEnter={() => {
+                clearThemeCloseTimer();
+                setIsThemeOpen(true);
+              }}
+              onMouseLeave={scheduleThemeClose}
             >
-              <div
-                className="flex items-center gap-2 px-3 py-2 text-sm font-medium cursor-pointer select-none"
+              <button
+                type="button"
+                className="flex items-center gap-2 h-full py-4 text-sm font-medium cursor-pointer select-none bg-transparent border-0 focus:outline-none"
                 style={{
                   color: 'var(--color-text)',
                 }}
+                aria-haspopup="menu"
+                aria-expanded={isThemeOpen}
               >
-                <span>Theme: {themeOptions.find((opt) => opt.value === theme)?.label ?? 'Light'}</span>
+                <span>Theme: {themeOptions.find((opt) => opt.value === theme)?.label ?? 'Dark'}</span>
                 <FiChevronDown
                   className="transition-transform"
                   style={{ transform: isThemeOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 />
-              </div>
+              </button>
               <AnimatePresence>
                 {isThemeOpen && (
                   <motion.div
@@ -151,7 +199,7 @@ export default function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 md:left-auto md:right-0 mt-3 z-50 -translate-x-1/2 md:translate-x-0"
+                    className="absolute left-1/2 md:left-auto md:right-0 top-full -mt-2 pt-1 z-50 -translate-x-1/2 md:translate-x-0"
                   >
                     <div
                       className="grid grid-cols-2 gap-3 p-4 rounded-2xl shadow-xl border border-theme"
@@ -168,6 +216,7 @@ export default function Navigation() {
                             key={card.value}
                             onClick={() => {
                               setTheme(card.value);
+                              clearThemeCloseTimer();
                               setIsThemeOpen(false);
                             }}
                             className={`glass w-36 aspect-square rounded-2xl flex flex-col items-center justify-center border transition-all ${

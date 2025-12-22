@@ -47,7 +47,7 @@ export default function WorkDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-app py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-app pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto relative">
         <Breadcrumbs
           className="mb-6"

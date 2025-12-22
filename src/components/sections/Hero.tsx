@@ -24,14 +24,17 @@ export default function Hero() {
   const animationDuration = isMobile ? 0.3 : 0.5;
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-hero">
+    <section
+      id="home"
+      className="min-h-[calc(100dvh+100px)] flex items-center justify-center relative overflow-hidden bg-hero"
+    >
       {/* Animated Background Elements */}
       <AnimatedBlobBackground intensity="high" />
 
       {/* Fade-out gradient at bottom for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 hero-fade-top pointer-events-none z-10" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
           <motion.h1
