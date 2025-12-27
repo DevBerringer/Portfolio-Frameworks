@@ -20,36 +20,23 @@ export default function WorkExperienceSection() {
   } as const;
 
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 bg-app">
+    <section className="min-h-screen flex flex-col justify-center pb-16 pt-25 bg-app">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-10"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={fadeUp}
-          transition={{ duration: 0.4 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 dark:text-white">Work Experience</h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
+            Work <span className="text-gradient">Experience</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 xl:text-lg max-w-2xl mx-auto">
             Roles where I built scalable systems, reliable data pipelines, and user-facing products.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center max-w-5xl mx-auto"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={stagger}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center max-w-5xl mx-auto">
           {workExperience.map((job) => (
-            <MotionLink
+            <Link
               key={job.id}
               to={`/work/${job.id}`}
-              variants={fadeUp}
-              whileHover={{ y: -1, scale: 1.02 }}
-              className="bg-surface p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm"
+              className="bg-surface p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm hover:-translate-y-1 hover:scale-[1.02] transition-transform duration-300"
             >
               <CompanyAvatar
                 name={job.company}
@@ -71,9 +58,9 @@ export default function WorkExperienceSection() {
                   )}
                 </div>
               </div>
-            </MotionLink>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

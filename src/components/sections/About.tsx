@@ -10,14 +10,6 @@ export default function About() {
     show: { opacity: 1, y: 0 },
   } as const;
 
-  const stagger = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  } as const;
-
   const skillCategories = {
     frontend: skills.filter((s) => s.category === 'frontend'),
     backend: skills.filter((s) => s.category === 'backend'),
@@ -34,36 +26,23 @@ export default function About() {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative py-20 bg-app scroll-mt-20">
+    <section className="min-h-screen flex flex-col justify-center relative pb-20 pt-25 bg-app scroll-mt-20">
       {/* Fade-in gradient at top for smooth transition from Hero */}
       <div className="absolute top-0 left-0 right-0 h-40 fade-to-app-bottom pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.4 }}
-          variants={fadeUp}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             About <span className="text-gradient">Me</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 xl:text-lg max-w-2xl mx-auto">
             Get to know me better
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* About Text */}
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.45 }}
-            variants={fadeUp}
-          >
+          <div>
             <div className="prose prose-lg">
               {personalInfo.about.split('\n').map((paragraph, index) => (
                 <p key={index} className="text-gray-600 dark:text-gray-300 mb-4 xl:text-lg">
@@ -83,19 +62,13 @@ export default function About() {
               </div>
             </div>
             {/* Stats */}
-            <motion.div
+            <div
               className="grid grid-cols-2 xl:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={stagger}
             >
               {stats.map((stat, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={fadeUp}
-                  whileHover={{ y: -5 }}
-                  className="flex flex-col items-center justify-center p-4 rounded-2xl glass w-36 h-36 md:w-40 md:h-40"
+                  className="flex flex-col items-center justify-center p-4 rounded-2xl w-36 h-36 md:w-40 md:h-40"
                 >
                   <div
                     className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl"
@@ -110,19 +83,13 @@ export default function About() {
                     {stat.value}
                   </div>
                   <div className="text-gray-600 dark:text-gray-400 text-sm">{stat.label}</div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Skills */}
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.45 }}
-            variants={fadeUp}
-          >
+          <div>
             <h3 className="text-2xl xl:text-3xl font-bold mb-6 dark:text-white">Skills & Technologies</h3>
             
             <div className="space-y-6">
@@ -145,7 +112,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

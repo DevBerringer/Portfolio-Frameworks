@@ -48,13 +48,7 @@ export default function Projects() {
   return (
     <section className="min-h-screen flex flex-col justify-center py-10 bg-app overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             Featured <span className="text-gradient">Projects</span>
           </h2>
@@ -62,7 +56,7 @@ export default function Projects() {
             Here is some of my work. Each project represents a unique challenge
             and showcases different aspects of my skillset.
           </p>
-        </motion.div>
+        </div>
 
         {/* Desktop Carousel - Hidden on mobile */}
         <div className="hidden md:block relative w-full mx-auto mb-12 overflow-hidden">
@@ -84,7 +78,7 @@ export default function Projects() {
             </button>
           </div>
 
-          <div className="relative h-[600px] flex items-center justify-center overflow-hidden">
+          <div className="relative h-140 flex items-center justify-center overflow-hidden">
             {/* Previous Card (Left) */}
             <AnimatePresence initial={false}>
               <motion.div
@@ -183,24 +177,17 @@ export default function Projects() {
         </div>
 
         {/* View More Button */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <motion.a
+        <div className="text-center">
+          <a
             href="https://github.com/DevBerringer"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-colors"
+            className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-colors hover:scale-105 active:scale-95 duration-200"
           >
             <FiGithub className="mr-2" size={20} />
             View More on GitHub
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
       </div>
     </section>
   );

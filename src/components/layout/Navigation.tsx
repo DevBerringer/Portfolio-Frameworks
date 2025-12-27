@@ -78,7 +78,9 @@ export default function Navigation() {
     }, 2500);
   }, [clearThemeCloseTimer, isThemeOpen]);
 
-  const hasBg = scrolled || isOpen;
+  // Only show background when mobile menu is open, otherwise keep transparent
+  const hasBg = isOpen;
+  
   const navBgStyle = {
     backgroundColor: hasBg
       ? 'color-mix(in srgb, var(--color-surface, #ffffff) 88%, transparent)'
