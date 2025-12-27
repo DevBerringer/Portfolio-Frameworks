@@ -5,11 +5,6 @@ import { personalInfo, skills } from '../../data/portfolio';
 export default function About() {
   const category = 'cloud tools';
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0 },
-  } as const;
-
   const skillCategories = {
     frontend: skills.filter((s) => s.category === 'frontend'),
     backend: skills.filter((s) => s.category === 'backend'),

@@ -1,23 +1,10 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { workExperience } from '../../data/portfolio';
 import CompanyAvatar from '../ui/CompanyAvatar';
 
-const MotionLink = motion(Link);
-
 export default function WorkExperienceSection() {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0 },
-  } as const;
 
-  const stagger = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  } as const;
+
 
   return (
     <section className="min-h-screen flex flex-col justify-center pb-16 pt-25 bg-app">
