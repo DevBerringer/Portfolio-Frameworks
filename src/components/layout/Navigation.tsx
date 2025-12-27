@@ -75,7 +75,7 @@ export default function Navigation() {
     themeCloseTimeout.current = window.setTimeout(() => {
       setIsThemeOpen(false);
       themeCloseTimeout.current = null;
-    }, 500);
+    }, 2500);
   }, [clearThemeCloseTimer, isThemeOpen]);
 
   const hasBg = scrolled || isOpen;
@@ -179,7 +179,7 @@ export default function Navigation() {
             >
               <button
                 type="button"
-                className="flex items-center gap-2 h-full py-4 text-sm font-medium cursor-pointer select-none bg-transparent border-0 focus:outline-none"
+                className="flex items-center gap-2 h-full py-4 text-sm font-medium cursor-pointer select-none bg-transparent focus:outline-none"
                 style={{
                   color: 'var(--color-text)',
                 }}
@@ -202,7 +202,7 @@ export default function Navigation() {
                     className="absolute left-1/2 md:left-auto md:right-0 top-full -mt-2 pt-1 z-50 -translate-x-1/2 md:translate-x-0"
                   >
                     <div
-                      className="grid grid-cols-2 gap-3 p-4 rounded-2xl shadow-xl border border-theme"
+                      className="grid grid-cols-2 gap-3 p-4 rounded-2xl shadow-xl"
                       style={{
                         backgroundColor: 'color-mix(in srgb, var(--color-surface) 96%, transparent)',
                         maxWidth: '380px',
@@ -219,10 +219,10 @@ export default function Navigation() {
                               clearThemeCloseTimer();
                               setIsThemeOpen(false);
                             }}
-                            className={`glass w-36 aspect-square rounded-2xl flex flex-col items-center justify-center border transition-all ${
+                            className={`glass w-36 aspect-square rounded-2xl flex flex-col items-center justify-center transition-all ${
                               isActive
-                                ? 'border-[6px] border-primary-600 shadow-lg shadow-primary-500/20 scale-105'
-                                : 'border border-theme hover:border-primary-600 hover:shadow-lg hover:shadow-primary-500/10'
+                                ? 'border border-primary-600 shadow-lg shadow-primary-500/20 scale-105'
+                                : 'hover:border-primary-600 hover:shadow-lg hover:shadow-primary-500/10'
                             }`}
                             style={{
                               backgroundColor: 'color-mix(in srgb, var(--color-surface) 90%, transparent)',
@@ -309,10 +309,10 @@ export default function Navigation() {
                         setTheme(card.value);
                         setIsOpen(false);
                       }}
-                      className={`glass flex flex-col items-center justify-center border transition-all rounded-lg py-2 px-1 aspect-square ${
+                      className={`glass flex flex-col items-center justify-center transition-all rounded-lg py-2 px-1 aspect-square ${
                         isActive
-                          ? 'border-[4px] border-primary-600 shadow-lg shadow-primary-500/20 scale-105'
-                          : 'border border-theme hover:border-primary-600 hover:shadow-lg hover:shadow-primary-500/10'
+                          ? 'border border-primary-600 shadow-lg shadow-primary-500/20 scale-105'
+                          : 'hover:border-primary-600 hover:shadow-lg hover:shadow-primary-500/10'
                       }`}
                       style={{
                         backgroundColor: 'color-mix(in srgb, var(--color-surface) 92%, transparent)',

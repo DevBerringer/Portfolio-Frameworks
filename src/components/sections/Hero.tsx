@@ -25,8 +25,7 @@ export default function Hero() {
 
   return (
     <section
-      id="home"
-      className="min-h-[calc(100dvh+100px)] flex items-center justify-center relative overflow-hidden bg-hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-hero"
     >
       {/* Animated Background Elements */}
       <AnimatedBlobBackground intensity="high" />

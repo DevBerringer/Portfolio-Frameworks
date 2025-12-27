@@ -34,7 +34,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-app scroll-mt-20">
+    <section className="min-h-screen flex flex-col justify-center relative py-20 bg-app scroll-mt-20">
       {/* Fade-in gradient at top for smooth transition from Hero */}
       <div className="absolute top-0 left-0 right-0 h-40 fade-to-app-bottom pointer-events-none" />
       
@@ -84,7 +84,7 @@ export default function About() {
             </div>
             {/* Stats */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
+              className="grid grid-cols-2 xl:grid-cols-4 mt-8 gap-x-6 gap-y-4 justify-items-center"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: '-50px' }}
@@ -95,7 +95,7 @@ export default function About() {
                   key={index}
                   variants={fadeUp}
                   whileHover={{ y: -5 }}
-                  className="flex flex-col items-center justify-center p-4 rounded-2xl glass aspect-square w-36 md:w-40 mx-2"
+                  className="flex flex-col items-center justify-center p-4 rounded-2xl glass w-36 h-36 md:w-40 md:h-40"
                 >
                   <div
                     className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3 text-xl"

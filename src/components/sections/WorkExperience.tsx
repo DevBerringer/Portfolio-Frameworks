@@ -20,7 +20,7 @@ export default function WorkExperienceSection() {
   } as const;
 
   return (
-    <section id="work" className="py-16 bg-app">
+    <section className="min-h-screen flex flex-col justify-center py-16 bg-app">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-10"
@@ -49,7 +49,7 @@ export default function WorkExperienceSection() {
               to={`/work/${job.id}`}
               variants={fadeUp}
               whileHover={{ y: -1, scale: 1.02 }}
-              className="bg-surface border border-theme p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm"
+              className="bg-surface p-6 rounded-xl flex flex-col items-center justify-center hover:shadow-lg transition-shadow min-w-[240px] w-full max-w-sm"
             >
               <CompanyAvatar
                 name={job.company}
@@ -65,7 +65,7 @@ export default function WorkExperienceSection() {
                 <div className="mt-1">
                   {job.start} — {job.end ?? 'Present'}{' '}
                   {job.employmentType && (
-                    <span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted border border-theme rounded">
+                    <span className="ml-2 px-2 py-0.5 text-xs bg-surface-muted rounded">
                       {job.employmentType}
                     </span>
                   )}

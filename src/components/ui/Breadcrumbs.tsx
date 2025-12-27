@@ -15,7 +15,7 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center gap-2 text-sm text-[color:var(--color-text-muted)] ${className}`}>
+    <nav aria-label="Breadcrumb" className={`flex items-center gap-2 text-sm text-(--color-text-muted) ${className}`}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         const content = item.to ? (
@@ -26,13 +26,13 @@ export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps)
                 item.onClick(event);
               }
             }}
-            className={`hover:text-primary-600 transition-colors ${item.current ? 'text-[color:var(--color-text)] font-semibold' : ''}`}
+            className={`hover:text-primary-600 transition-colors ${item.current ? 'text-(--color-text) font-semibold' : ''}`}
             aria-current={item.current ? 'page' : undefined}
           >
             {item.label}
           </Link>
         ) : (
-          <span className={`cursor-default ${item.current ? 'text-[color:var(--color-text)] font-semibold' : ''}`} aria-current={item.current ? 'page' : undefined}>
+          <span className={`cursor-default ${item.current ? 'text-(--color-text) font-semibold' : ''}`} aria-current={item.current ? 'page' : undefined}>
             {item.label}
           </span>
         );

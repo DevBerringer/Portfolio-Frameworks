@@ -77,7 +77,7 @@ The optimized production build will be in the `dist` folder.
 ```
 src/
 ├── components/          # React components
-│   ├── layout/         # Layout components (Navigation, Footer, Layout)
+│   ├── layout/         # Layout components (Navigation, Layout)
 │   └── sections/       # Page sections (Hero, About, Projects, Contact)
 ├── data/               # Data and content
 │   └── portfolio.ts    # Main content configuration

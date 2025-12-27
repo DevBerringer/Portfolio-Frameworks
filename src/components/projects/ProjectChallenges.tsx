@@ -23,7 +23,7 @@ export default function ProjectChallenges({ challenges }: ProjectChallengesProps
               </span>
             </div>
             <div className="flex items-start gap-3 ml-6">
-              <span className="flex h-1.5 w-1.5 items-center justify-center rounded-full bg-primary-500 dark:bg-primary-400 shrink-0"></span>
+              <span className="mt-3 flex h-1.5 w-1.5 items-center justify-center rounded-full bg-primary-500 dark:bg-primary-400 shrink-0"></span>
               <span className="leading-relaxed text-slate-600 dark:text-slate-400">
                 {item.solution}
               </span>

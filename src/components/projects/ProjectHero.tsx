@@ -8,11 +8,7 @@ interface ProjectHeroProps {
 
 export default function ProjectHero({ project }: ProjectHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-(--color-app-bg) via-(--color-surface-muted) to-(--color-primary-soft) text-(--color-text)">
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute -top-24 -right-10 h-64 w-64 rounded-full bg-[color-mix(in_srgb,var(--color-primary)_65%,transparent)] blur-3xl" />
-        <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color-mix(in_srgb,var(--color-accent)_65%,transparent)] blur-3xl" />
-      </div>
+    <section>
       <div className="relative mx-auto max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] pb-12 pt-10 px-8 sm:px-12 lg:px-16 xl:px-20 2xl:px-24">
         <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
           <div>
@@ -27,7 +23,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
               {project.tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wide"
+                  className="rounded-sm px-4 py-1 text-xs font-semibold uppercase tracking-wide"
                   style={{
                     backgroundColor: 'var(--color-primary-soft)',
                     border: '1px solid var(--color-primary-border)',
@@ -45,7 +41,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold shadow-lg transition hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-sm px-6 py-3 font-semibold shadow-lg transition hover:-translate-y-0.5"
                   style={{
                     backgroundColor: 'var(--color-surface)',
                     color: 'var(--color-text)',
@@ -61,7 +57,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-sm px-6 py-3 font-semibold transition hover:-translate-y-0.5"
                   style={{
                     color: 'var(--color-text)',
                     border: '1px solid var(--color-primary-border)',
@@ -74,7 +70,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
               ) : (
                 <button
                   disabled
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"
+                  className="inline-flex items-center gap-2 rounded-sm px-6 py-3 font-semibold"
                   style={{
                     color: 'var(--color-text-muted)',
                     border: '1px solid var(--color-border)',

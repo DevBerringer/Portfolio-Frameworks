@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import Navigation from './Navigation';
-import Footer from './Footer';
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,7 +10,6 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="grow">{children}</main>
-      <Footer />
     </div>
   );
 }

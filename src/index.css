@@ -175,14 +175,14 @@
     background-color: var(--color-app-bg, #ffffff);
     color: var(--color-text, #111827);
     font-family: var(--font-inter);
-    overflow-x: hidden;
+    /* overflow-x: hidden; - Removed to fix sticky positioning */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    /* overflow-x: hidden; - Removed to fix sticky positioning */
   }
 }
 
@@ -196,7 +196,6 @@
 @utility glass {
   background-color: color-mix(in srgb, var(--color-surface, #ffffff) 92%, transparent);
   backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--color-border, #e5e7eb) 80%, transparent);
 }
 
 @utility bg-hero {
@@ -328,3 +327,6 @@
     will-change: contents;
   }
 }
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
