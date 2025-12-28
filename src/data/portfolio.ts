@@ -1,4 +1,4 @@
-import type { Project, Skill, SocialLink } from '../types';
+import type { Project, Skill, SocialLink, ExperienceItem } from '../types';
 import gmLogo from '../assets/logos/gm.jpg';
 import aztecLogo from '../assets/logos/aztec.png';
 import cozyCookbookImg from '../assets/cozy-cookbook.png';
@@ -177,57 +177,73 @@ export const personalInfo = {
   availability: 'Available for Full Stack & Backend roles',
 };
 
-export const workExperience = [
+export const experience: ExperienceItem[] = [
   {
     id: 'gm',
-    company: 'General Motors',
-    location: 'Austin, TX',
+    type: 'work',
+    organization: 'General Motors',
     title: 'Software Engineer',
+    location: 'Austin, TX',
     start: 'Aug 2021',
     end: 'Present',
     startDate: '2021-08',
     endDate: null,
-    employmentType: 'Full-time',
-    companyUrl: 'https://www.gm.com',
     logo: gmLogo,
-    overview: 'Led event-driven platform work for vehicle data systems, re-architecting pipelines and building microservices and integrations that improved throughput and enabled ML-driven distribution and forecasting.',
-    responsibilities: [
-      'Design and implement scalable Java microservices for high-throughput event processing.',
-      'Convert business asks into maintainable software solutions',
-      'Architected and maintained a configurable rule-engine API for dynamic routing of vehicle payloads based on EV, ICE (Internal Combustion Engine), year, make and model.',
-      'Built and integrated data pipelines to ingest and operationalize Machine learning predictions.',
-      'Migrated legacy monolithic applications to microservices and implement CI/CD.'
-    ],
-    achievements: [
+    url: 'https://www.gm.com',
+    description: 'Led event-driven platform work for vehicle data systems, re-architecting pipelines and building microservices and integrations that improved throughput and enabled ML-driven distribution and forecasting.',
+    details: [
       'Increased event throughput and reduced processing latency by over 20x through a concurrent Pulsar-based Java service.',
-      'Designed a configurable rule engine API to dynamically route vehicle payloads to microservices, enabling new services without redeployment.',
-      'Delivered an integration that generated an estimated $25M in annual savings via optimized vehicle distribution and risk forecasting.',
+      'Designed a configurable rule engine API to dynamically route vehicle payloads to microservices.',
+      'Delivered an integration that generated an estimated $25M in annual savings via optimized vehicle distribution.',
       'Reduced system downtime from >10 minutes to <5 seconds after migrating critical components to microservices.'
     ],
-    techStack: ['Java', 'Spring Boot', 'Quarkus', 'Pulsar', 'Kafka', 'Docker', 'Kubernetes', 'PostgreSQL', 'MS SQL', 'SSISDB', 'IBM DataStage', 'IBM Cognos', 'GitHub Actions', 'Azure Pipelines', ' Pivotal Cloud Foundry' ],
+    skills: ['Java', 'Spring Boot', 'Quarkus', 'Pulsar', 'Kafka', 'Docker', 'Kubernetes', 'PostgreSQL', 'MS SQL', 'SSISDB', 'IBM DataStage', 'IBM Cognos', 'GitHub Actions', 'Azure Pipelines', 'Pivotal Cloud Foundry']
   },
   {
     id: 'aztec',
-    company: 'Aztec',
-    location: 'Sandusky, OH (Contract)',
+    type: 'work',
+    organization: 'Aztec',
     title: 'Software Developer',
+    location: 'Sandusky, OH (Contract)',
     start: 'Jun 2021',
     end: 'Aug 2021',
     startDate: '2021-06',
     endDate: '2021-08',
-    employmentType: 'Contract',
-    companyUrl: 'https://www.astecindustries.com/',
     logo: aztecLogo,
-    overview: 'Short-term contract focused on telematics reliability improvements and rapid delivery of a DOT-compliant electronic ticketing application.',
-    responsibilities: [
-      'Implement reliable state preservation for telematics devices operating over intermittent satellite connections.',
-      'Develop and ship a compliant electronic ticketing application using Vue and Python.'
-    ],
-    achievements: [
+    url: 'https://www.astecindustries.com/',
+    description: 'Short-term contract focused on telematics reliability improvements and rapid delivery of a DOT-compliant electronic ticketing application.',
+    details: [
       'Delivered a DOT-compliant electronic ticketing solution within a three-month contract window.',
       'Improved telematics device reliability for remote connectivity scenarios.'
     ],
-    techStack: ['Vue', 'Python', 'C#', 'Satellite telematics'],
+    skills: ['Vue', 'Python', 'C#', 'Satellite telematics']
+  },
+  {
+    id: 'education',
+    type: 'education',
+    organization: 'University',
+    title: 'Computer Science Degree',
+    location: 'City, State',
+    start: '2017',
+    end: '2021',
+    startDate: '2017-08',
+    endDate: '2021-05',
+    description: 'Bachelor of Science in Computer Science',
+    details: [
+      'Graduated with Honors'
+    ],
+    courses: [
+      'Data Structures & Algorithms',
+      'Software Engineering',
+      'Database Systems',
+      'Operating Systems',
+      'Computer Networks',
+      'Artificial Intelligence'
+    ],
+    projects: [
+      { name: 'Senior Capstone', url: 'https://github.com/DevBerringer' },
+      { name: 'Algorithm Visualizer', url: 'https://github.com/DevBerringer' }
+    ]
   }
 ];
 

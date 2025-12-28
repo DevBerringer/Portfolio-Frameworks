@@ -1,8 +1,18 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiActivity, FiShield ,FiCpu, FiCode, FiMapPin } from 'react-icons/fi';
 import { personalInfo, skills } from '../../data/portfolio';
 
 export default function About() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0.8, 1, 1, 0.8]);
+
   const category = 'cloud tools';
 
   const skillCategories = {
@@ -21,9 +31,9 @@ export default function About() {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative pb-20 pt-25 scroll-mt-20">
+    <section ref={containerRef} className="min-h-screen flex flex-col justify-center relative pb-20 pt-25 scroll-mt-20">
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ opacity, scale }} className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             About <span className="text-gradient">Me</span>
@@ -107,7 +117,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

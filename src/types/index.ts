@@ -36,6 +36,27 @@ export interface SocialLink {
   icon: string;
 }
 
+export type ExperienceType = 'work' | 'education';
+
+export interface ExperienceItem {
+  id: string;
+  type: ExperienceType;
+  organization: string; // Company or School
+  title: string; // Job title or Degree
+  location?: string;
+  start: string;
+  end?: string;
+  startDate: string;
+  endDate?: string | null;
+  logo?: string;
+  description?: string;
+  details?: string[]; // Responsibilities or key points
+  skills?: string[];
+  url?: string;
+  courses?: string[];
+  projects?: { name: string; url: string }[];
+}
+
 export interface WorkExperience {
   id: string;
   company: string;

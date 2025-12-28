@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { workExperience } from '../data/portfolio';
+import { experience } from '../data/portfolio';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 import CompanyAvatar from '../components/ui/CompanyAvatar';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
@@ -15,7 +15,7 @@ const getCompanyLinkProps = (companyUrl?: string) =>
 
 export default function WorkDetail() {
   const { id } = useParams<{ id: string }>();
-  const job = workExperience.find((j) => j.id === id);
+  const job = experience.find((j) => j.id === id);
   const scrollToSection = useScrollToSection();
 
   if (!job) {
@@ -43,8 +43,8 @@ export default function WorkDetail() {
           className="mb-6"
           items={[
             { label: 'Home', to: '/', onClick: () => scrollToSection('#home') },
-            { label: 'Work', to: '/', onClick: () => scrollToSection('#work') },
-            { label: job.company, current: true },
+            { label: 'Experience', to: '/', onClick: () => scrollToSection('#work') },
+            { label: job.organization, current: true },
           ]}
         />
 
@@ -54,7 +54,7 @@ export default function WorkDetail() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-4">
                 <CompanyAvatar
-                  name={job.company}
+                  name={job.organization}
                   logo={job.logo}
                   size="lg"
                   shape="rounded"
@@ -62,35 +62,30 @@ export default function WorkDetail() {
                   fallbackClassName="bg-surface-muted text-xl font-semibold text-[color:var(--color-text)]"
                 />
                 <div>
-                  <p className="text-sm uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">{job.company}</p>
+                  <p className="text-sm uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">{job.organization}</p>
                   <h1 className="text-2xl md:text-3xl font-bold text-[color:var(--color-text)]">{job.title}</h1>
                   <p className="text-sm text-[color:var(--color-text-muted)] mt-1">{job.location}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 md:justify-end">
-                {job.employmentType && (
-                  <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text)] bg-surface-muted/60">
-                    {job.employmentType}
-                  </span>
-                )}
                 <span className="inline-flex items-center rounded-full bg-surface-muted px-3 py-1 text-xs font-medium text-[color:var(--color-text)]">
                   {job.start} — {job.end || 'Present'}
                 </span>
-                {job.companyUrl && (
+                {job.url && (
                   <a
-                    href={job.companyUrl}
+                    href={job.url}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center rounded-full bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow hover:opacity-90"
                   >
-                    Visit company
+                    Visit {job.type === 'work' ? 'company' : 'institution'}
                   </a>
                 )}
               </div>
             </div>
 
-            {job.overview && (
-              <p className="max-w-4xl text-base leading-relaxed text-[color:var(--color-text)]">{job.overview}</p>
+            {job.description && (
+              <p className="max-w-4xl text-base leading-relaxed text-[color:var(--color-text)]">{job.description}</p>
             )}
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -103,21 +98,21 @@ export default function WorkDetail() {
                 <p className="text-sm font-semibold text-[color:var(--color-text)]">{job.start} — {job.end || 'Present'}</p>
               </div>
               <div className="rounded-2xl bg-surface-muted/60 px-4 py-3">
-                <p className="text-xs uppercase tracking-wide text-[color:var(--color-text-muted)]">Company</p>
+                <p className="text-xs uppercase tracking-wide text-[color:var(--color-text-muted)]">Organization</p>
                 <a
-                  {...getCompanyLinkProps(job.companyUrl)}
+                  {...getCompanyLinkProps(job.url)}
                   className="text-sm font-semibold text-primary-600 hover:underline"
                 >
-                  {job.company}
+                  {job.organization}
                 </a>
               </div>
             </div>
 
-            {job.techStack && job.techStack.length > 0 && (
+            {job.skills && job.skills.length > 0 && (
               <div className="flex flex-col gap-3">
-                <p className="text-xs uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Stack I used</p>
+                <p className="text-xs uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Skills</p>
                 <div className="flex flex-wrap gap-2">
-                  {job.techStack.map((tech) => (
+                  {job.skills.map((tech) => (
                     <span key={tech} className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm text-[color:var(--color-text)] shadow-sm">
                       {tech.trim()}
                     </span>
@@ -128,43 +123,27 @@ export default function WorkDetail() {
           </div>
         </section>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-5">
-          <section className="md:col-span-3 rounded-2xl bg-surface p-6 shadow-lg shadow-black/5">
+        <div className="mt-10 grid grid-cols-1 gap-6">
+          <section className="rounded-2xl bg-surface p-6 shadow-lg shadow-black/5">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">What I led</p>
-                <h2 className="text-xl font-semibold text-[color:var(--color-text)]">Responsibilities</h2>
+                <p className="text-xs uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Key Details</p>
+                <h2 className="text-xl font-semibold text-[color:var(--color-text)]">Responsibilities & Achievements</h2>
               </div>
               <Link
                 to="/"
                 onClick={() => scrollToSection('#work')}
                 className="text-sm font-medium text-primary-600 hover:underline"
               >
-                Back to work
+                Back to timeline
               </Link>
             </div>
             <div className="mt-4 space-y-3">
-              {job.responsibilities && job.responsibilities.length > 0 ? (
-                job.responsibilities.map((item) => (
+              {job.details && job.details.length > 0 ? (
+                job.details.map((item) => (
                   <div key={item} className="flex gap-3 rounded-xl bg-surface-muted/50 px-4 py-3">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary-500" aria-hidden />
                     <p className="text-sm leading-relaxed text-[color:var(--color-text)]">{item}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-[color:var(--color-text-muted)]">No entries listed.</p>
-              )}
-            </div>
-          </section>
-
-          <section className="md:col-span-2 rounded-2xl bg-surface p-6 shadow-lg shadow-black/5">
-            <p className="text-xs uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Impact</p>
-            <h2 className="text-xl font-semibold text-[color:var(--color-text)]">Highlights</h2>
-            <div className="mt-4 space-y-4">
-              {job.achievements && job.achievements.length > 0 ? (
-                job.achievements.map((item) => (
-                  <div key={item} className="rounded-xl bg-gradient-to-r from-primary-500/10 via-surface to-surface px-4 py-3 shadow-sm">
-                    <p className="text-sm font-medium text-[color:var(--color-text)]">{item}</p>
                   </div>
                 ))
               ) : (

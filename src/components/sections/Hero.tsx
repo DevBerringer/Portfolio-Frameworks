@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
@@ -15,6 +16,14 @@ const iconMap: Record<string, React.ReactElement> = {
 
 export default function Hero() {
   const { introComplete } = useIntro();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   
   const scrollToProjects = () => {
     document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -27,10 +36,11 @@ export default function Hero() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-25"
+      ref={containerRef}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-25 sticky top-0"
     >
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div style={{ opacity, scale }} className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -123,7 +133,7 @@ export default function Hero() {
             ))}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

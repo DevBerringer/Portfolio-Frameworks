@@ -8,7 +8,7 @@ import { personalInfo } from '../../data/portfolio';
 
 const navItems = [
   { label: 'Home', href: '#home' },
-  { label: 'Work Experience', href: '#work' },
+  { label: 'Experience', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
 ];
