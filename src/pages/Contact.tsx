@@ -97,7 +97,9 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-app pt-24 pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <div className="min-h-screen relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+
+      <div className="relative z-10">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -343,7 +345,6 @@ export default function Contact() {
             </form>
           </motion.div>
         </div>
-      </div>
-    </div>
+      </div>      </div>    </div>
   );
 }

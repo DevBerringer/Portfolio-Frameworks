@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiMenu, FiX, FiSun, FiMoon, FiFeather, FiDroplet, FiChevronDown } from 'react-icons/fi';
 import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { type ThemeOption, useTheme } from '../../hooks/useTheme';
+import { personalInfo } from '../../data/portfolio';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -75,7 +76,7 @@ export default function Navigation() {
     themeCloseTimeout.current = window.setTimeout(() => {
       setIsThemeOpen(false);
       themeCloseTimeout.current = null;
-    }, 2500);
+    }, 500);
   }, [clearThemeCloseTimer, isThemeOpen]);
 
   // Only show background when mobile menu is open, otherwise keep transparent
@@ -142,7 +143,7 @@ export default function Navigation() {
             whileTap={{ scale: 0.95 }}
           >
             <Link to="/" onClick={() => scrollToSection('#home')}>
-              Portfolio
+              <span className="text-gradient">{personalInfo.name}</span>
             </Link>
           </motion.div>
 

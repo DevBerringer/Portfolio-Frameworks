@@ -21,9 +21,7 @@ export default function About() {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative pb-20 pt-25 bg-app scroll-mt-20">
-      {/* Fade-in gradient at top for smooth transition from Hero */}
-      <div className="absolute top-0 left-0 right-0 h-40 fade-to-app-bottom pointer-events-none" />
+    <section className="min-h-screen flex flex-col justify-center relative pb-20 pt-25 scroll-mt-20">
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

@@ -21,8 +21,10 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-app pt-24 pb-16">
-      <div className="mx-auto max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] px-8 sm:px-12 lg:px-16 pt-8">
+    <div className="min-h-screen relative pt-24 pb-16">
+
+      <div className="relative z-10">
+        <div className="mx-auto max-w-5xl xl:max-w-[80vw] 4xl:max-w-[70vw] px-8 sm:px-12 lg:px-16 pt-8">
         <Breadcrumbs
           items={[
             { label: 'Home', to: '/', onClick: () => scrollToSection('#home') },
@@ -54,6 +56,7 @@ const ProjectDetail = () => {
             <ProjectFeatures features={project.features} />
           )}
         </div>
+      </div>
       </div>
     </div>
   );

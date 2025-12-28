@@ -36,8 +36,9 @@ export default function WorkDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-app pt-24 pb-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div className="min-h-screen relative pt-24 pb-16">
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Breadcrumbs
           className="mb-6"
           items={[

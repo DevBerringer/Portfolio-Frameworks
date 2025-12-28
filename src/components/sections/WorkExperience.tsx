@@ -7,8 +7,9 @@ export default function WorkExperienceSection() {
 
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pb-16 pt-25 bg-app">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex flex-col justify-center relative pb-16 pt-25">
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white">
             Work <span className="text-gradient">Experience</span>

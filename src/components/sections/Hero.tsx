@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../../data/portfolio';
-import AnimatedBlobBackground from '../ui/AnimatedBlobBackground';
+import { useIntro } from '../../context/IntroContext';
 
 const MotionLink = motion.create(Link);
 
@@ -14,6 +14,8 @@ const iconMap: Record<string, React.ReactElement> = {
 };
 
 export default function Hero() {
+  const { introComplete } = useIntro();
+  
   const scrollToProjects = () => {
     document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -25,17 +27,21 @@ export default function Hero() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-hero pt-[100px]"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-25"
     >
-      {/* Animated Background Elements */}
-      <AnimatedBlobBackground intensity="high" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div 
+          className="max-w-4xl mx-auto text-center"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={introComplete ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          style={{ willChange: 'transform, opacity' }}
+        >
           {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration, delay: animationDelay }}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight dark:text-white"
           >
@@ -44,7 +50,7 @@ export default function Hero() {
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration }}
             className="mb-6"
           >
@@ -53,7 +59,7 @@ export default function Hero() {
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration, delay: animationDelay * 2 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4"
           >
@@ -62,7 +68,7 @@ export default function Hero() {
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration, delay: animationDelay * 3 }}
             className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto xl:text-xl"
           >
@@ -72,7 +78,7 @@ export default function Hero() {
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration, delay: animationDelay * 4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
@@ -97,9 +103,9 @@ export default function Hero() {
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: animationDuration, delay: animationDelay * 5 }}
-            className="flex justify-center space-x-6"
+            className="flex justify-center gap-6"
           >
             {socialLinks.map((link) => (
               <motion.a
@@ -107,15 +113,16 @@ export default function Hero() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -3 }}
-                className="text-gray-600 hover:text-primary-600 transition-colors"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
                 aria-label={link.name}
               >
                 {iconMap[link.icon]}
               </motion.a>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
