@@ -1,10 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../components/sections/Hero';
 import WorkExperienceSection from '../components/sections/WorkExperience';
 import About from '../components/sections/About';
 import Projects from '../components/sections/Projects';
-import { useSection, sections as sectionIds } from '../context/SectionContext';
+import { useSection } from '../context/SectionContext';
+import { sections as sectionIds } from '../constants/sections';
 
 const sections = [
   { Component: Hero, key: 'hero', id: 'home' },

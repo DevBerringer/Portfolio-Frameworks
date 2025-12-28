@@ -1,7 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-
-type SectionId = 'home' | 'work' | 'about' | 'projects';
+import React, { createContext, useContext, useState, type ReactNode } from 'react';
+import { type SectionId, sections } from '../constants/sections';
 
 interface SectionContextType {
   activeSection: SectionId;
@@ -11,12 +9,8 @@ interface SectionContextType {
 
 const SectionContext = createContext<SectionContextType | undefined>(undefined);
 
-export const sections: SectionId[] = ['home', 'work', 'about', 'projects'];
-
 export const SectionProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
-  const location = useLocation();
-
   // Reset to home when leaving the home page? 
   // Or keep state? 
   // If we navigate to /project/1 and back, we might want to be at the same place?
