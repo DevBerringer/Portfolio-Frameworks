@@ -12,13 +12,17 @@ export const useScrollToSection = () => {
     // If not on home page, navigate to home first
     if (location.pathname !== '/') {
       navigate('/');
-      // Wait for navigation to complete, then set section
+      // Wait for navigation to complete, then scroll
       setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth' });
         setActiveSection(sectionId);
       }, 100);
       return;
     }
 
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
     setActiveSection(sectionId);
   };
 

@@ -221,28 +221,17 @@ export const experience: ExperienceItem[] = [
   {
     id: 'education',
     type: 'education',
-    organization: 'University',
+    organization: 'University of Iowa',
     title: 'Computer Science Degree',
-    location: 'City, State',
+    location: 'Iowa City, Iowa',
     start: '2017',
     end: '2021',
     startDate: '2017-08',
     endDate: '2021-05',
-    description: 'Bachelor of Science in Computer Science',
-    details: [
-      'Graduated with Honors'
-    ],
-    courses: [
-      'Data Structures & Algorithms',
-      'Software Engineering',
-      'Database Systems',
-      'Operating Systems',
-      'Computer Networks',
-      'Artificial Intelligence'
-    ],
+    description: 'Bachelor\'s in Computer Science',
     projects: [
-      { name: 'Senior Capstone', url: 'https://github.com/DevBerringer' },
-      { name: 'Algorithm Visualizer', url: 'https://github.com/DevBerringer' }
+      { name: 'T9 Predictive text', url: 'https://github.com/DevBerringer/T9-predictive-textr' },
+      { name: 'Senior Capstone', url: 'https://github.com/DevBerringer/Epidemic_Simulator' }
     ]
   }
 ];

@@ -15,6 +15,7 @@ interface TimelineNode {
   mainItem?: ExperienceItem;
   subItem?: any;
   isFuture?: boolean;
+  noCard?: boolean;
 }
 
 export default function Experience() {
@@ -94,7 +95,7 @@ export default function Experience() {
         {
             id: 'future-1',
             type: 'main',
-            date: '2025+',
+            date: 'Future',
             title: 'Senior Engineer',
             description: 'Leading major architectural initiatives',
             isFuture: true,
@@ -117,27 +118,36 @@ export default function Experience() {
             title: 'Next Big Project',
             description: 'AI Integration Platform',
             isFuture: true,
-            subItem: { url: '#' }
+            subItem: { url: '#' },
+            noCard: true
         },
-                {
+        {
             id: 'future-3',
             type: 'main',
-            date: '2025+',
+            date: 'Future',
             title: 'Staff Engineer',
-            description: 'Leading major architectural initiatives',
+            description: 'Technical direction & Strategy',
             isFuture: true,
             mainItem: {
-                id: 'future-1',
+                id: 'future-3',
                 type: 'work',
                 organization: 'Future Role',
-                title: 'Senior Engineer',
-                location: 'Tech Hub',
-                start: '2025',
-                end: 'Future',
-                startDate: '2025-01-01',
-                description: 'Continuing to build scalable solutions and mentor others.',
-                skills: ['Architecture', 'Leadership']
+                title: 'Staff Engineer',
+                location: 'Global',
+                start: '2026',
+                end: '',
+                startDate: '2026-01-01',
+                description: 'Driving technical strategy and cross-team architecture.',
+                skills: ['Strategy', 'System Design']
             }
+        },
+        {
+            id: 'future-4',
+            type: 'sub',
+            title: 'Next Big Project',
+            isFuture: true,
+            subItem: { url: '#' },
+            noCard: true
         },
     );
 
@@ -160,7 +170,7 @@ export default function Experience() {
         currentX += width + GAP;
         return { x, width };
     });
-  }, [timelineNodes]);
+  }, [GAP, MAIN_WIDTH, PADDING_X, SUB_WIDTH, timelineNodes]);
 
   const TOTAL_WIDTH = nodePositions[nodePositions.length - 1].x + PADDING_X;
 
@@ -213,7 +223,7 @@ export default function Experience() {
               Experience <span className="text-gradient">Timeline</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
-              My professional journey and education
+              My educational and professional journey 
             </p>
           </div>
 
@@ -284,6 +294,10 @@ export default function Experience() {
     <section ref={targetRef} className="relative h-[600vh] bg-background">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         
+        <motion.div 
+          className="w-full h-full flex items-center"
+        >
+        
         <div className="absolute top-24 md:top-32 left-0 w-full z-10 pointer-events-none flex flex-col items-center justify-center text-center">
             <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 dark:text-white drop-shadow-lg">
             Experience <span className="text-gradient">Timeline</span>
@@ -351,6 +365,7 @@ export default function Experience() {
               )}
 
               {/* Card */}
+              {!node.noCard && (
               <div className={`
                 absolute w-full rounded-xl bg-surface/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border border-white/10 hover:border-primary/50
                 ${index % 2 === 0 ? 'bottom-full mb-4' : 'top-full mt-4'}
@@ -414,6 +429,7 @@ export default function Experience() {
                     </div>
                 )}
               </div>
+              )}
               
               {/* Connecting Line (Vertical) */}
               <div className={`
@@ -426,6 +442,8 @@ export default function Experience() {
           
           {/* End padding */}
           <div className="w-[50vw] flex-shrink-0" />
+        </motion.div>
+        
         </motion.div>
       </div>
     </section>

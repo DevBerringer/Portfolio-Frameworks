@@ -57,8 +57,8 @@ const MatrixRain: React.FC<MatrixRainProps> = ({ isActive, isOverlay = true, cla
 
     setCanvasSize();
 
-    // Matrix characters - Chinese
-    const chars = '日月火水木金土天海空山川河湖谷田地風雨雪電雷光闇愛憎喜怒哀楽春夏秋冬東西南北上下左右前後白黒赤青黄緑紫橙茶灰銀金壱弐参肆伍陸漆捌玖拾百千万億兆';
+    // Matrix characters - Katakana and Numerals (The Matrix style)
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
     const charArray = chars.split('');
     
     const fontSize = 24;
@@ -111,7 +111,7 @@ const MatrixRain: React.FC<MatrixRainProps> = ({ isActive, isOverlay = true, cla
 
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = themeColor;
-      ctx.font = `${fontSize}px monospace`;
+      ctx.font = `${fontSize}px 'MS Gothic', 'Courier New', monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = charArray[Math.floor(Math.random() * charArray.length)];

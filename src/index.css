@@ -182,7 +182,17 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 85%; /* Scaled down for Chrome/Edge */
     /* overflow-x: hidden; - Removed to fix sticky positioning */
+    -webkit-text-size-adjust: 100%; /* Prevent automatic text resizing */
+    text-size-adjust: 100%;
+  }
+
+  /* Firefox Specific Override */
+  @-moz-document url-prefix() {
+    html {
+      font-size: 100%;
+    }
   }
 }
 

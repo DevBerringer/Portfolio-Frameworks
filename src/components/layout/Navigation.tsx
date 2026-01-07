@@ -8,8 +8,8 @@ import { personalInfo } from '../../data/portfolio';
 
 const navItems = [
   { label: 'Home', href: '#home' },
-  { label: 'Experience', href: '#work' },
   { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#work' },
   { label: 'Projects', href: '#projects' },
 ];
 
@@ -155,10 +155,11 @@ export default function Navigation() {
                 className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-900/10"
                 whileHover={{}}
                 whileTap={{}}
+                onClick={() => scrollToSection(item.href)}
               >
-                <Link to="/" onClick={() => scrollToSection(item.href)} className="block px-2 py-1">
+                <div className="block px-2 py-1">
                   {item.label}
-                </Link>
+                </div>
               </motion.div>
             ))}
 
