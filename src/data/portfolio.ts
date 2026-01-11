@@ -230,7 +230,7 @@ export const experience: ExperienceItem[] = [
     endDate: '2021-05',
     description: 'Bachelor\'s in Computer Science',
     projects: [
-      { name: 'T9 Predictive text', url: 'https://github.com/DevBerringer/T9-predictive-textr' },
+      { name: 'T9 Predictive text', url: 'https://github.com/DevBerringer/T9-predictive-text' },
       { name: 'Senior Capstone', url: 'https://github.com/DevBerringer/Epidemic_Simulator' }
     ]
   }
